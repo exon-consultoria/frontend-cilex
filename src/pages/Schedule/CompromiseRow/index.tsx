@@ -3,10 +3,7 @@ import { ThemeContext } from 'styled-components';
 import { BsTrash } from 'react-icons/bs';
 import { ImCheckboxUnchecked, ImCheckmark } from 'react-icons/im';
 import { FiSave } from 'react-icons/fi';
-import { toast } from 'react-toastify';
 import { Formik } from 'formik';
-
-import api from '../../../services/api';
 
 import Select from '../../../components/Select';
 import Button from '../../../components/Button';
@@ -22,175 +19,45 @@ import {
   ContainerButtonsActions,
   ButtonActions,
   ContainerButtonsModal,
+  DeleteContainer,
+  DeleteOption,
+  Day,
 } from './styles';
 import InputFormik from '../../../components/InputFormik';
-
+import { format } from 'date-fns';
+import { stringDaysWeek } from '../../../utils/daysOfWeek';
+import { scheduleController } from '../schedule.controller';
+import { Compromise } from '../schedule.types'
 interface CompromiseRowProps {
-  compromise: {
-    id: string;
-    date: string;
-    hour: string;
-    done: boolean;
-    work: {
-      id: string;
-      color: string;
-      description: string;
-    };
-    pet: {
-      id: string;
-      name: string;
-    };
-    owner: {
-      id: string;
-      nome?: string;
-      razao_social?: string;
-      endereco: string;
-    };
-    recurrence?: string;
-  };
+  compromise: Compromise
   showDetail: boolean;
-  renderDay: (day: Date | string) => void;
-}
-interface Works {
-  id: string;
-  description: string;
-  color: string;
-}
-
-interface Pets {
-  id: string;
-  name: string;
-}
-
-interface CompromiseForm {
-  date: string;
-  hour: string;
-  work_id: string;
-  pet_id: string;
-  recurrence?: string;
-  done: boolean;
 }
 
 const CompromiseRow: React.FC<CompromiseRowProps> = ({
   compromise,
   showDetail,
-  renderDay,
 }) => {
+  const {
+    actions: {
+      handleFinishedCompromise,
+      handleUnfinishedCompromise,
+      setType,
+      handleDeleteCompromise,
+      setModalVisible,
+      handleSubmitEditForm
+    },
+    states: {
+      pets,
+      works,
+      modalVisible,
+    }
+  } = scheduleController()
   const { colors } = useContext(ThemeContext);
-
-  const [works, setWorks] = useState<Works[]>([]);
-  const [pets, setPets] = useState<Pets[]>([]);
-  const [modalVisible, setModalVisible] = useState(false);
   const [modalDeleteVisible, setModalDeleteVisible] = useState(false);
 
-  const handleFinishedCompromise = () => {
-    api.get('/work').then(response => {
-      setWorks(response.data);
-    });
-    api.get('/pet').then(response => {
-      setPets(response.data);
-    });
-
-    setModalVisible(true);
-  };
-
-  const handleUnfinishedCompromise = () => {
-    api
-      .put(`/appointments/${compromise.id}`, {
-        date: compromise.date,
-        hour: compromise.hour,
-        work_id: compromise.work.id,
-        pet_id: compromise.pet.id,
-        done: false,
-      })
-      .then(() => {
-        toast.success('Serviço concluído!');
-        renderDay(compromise.date);
-        setModalVisible(false);
-      })
-      .catch(() => {
-        toast.error('Erro na conclusão do Serviço!');
-      });
-  };
-
-  const handleDeleteCompromise = (id: string) => {
-    api
-      .delete(`/appointments/${id}`)
-      .then(() => {
-        toast.success('Compromisso deletado.');
-        renderDay(compromise.date);
-      })
-      .catch(() => {
-        toast.error('Erro na exclusão do Compromisso.');
-      });
-  };
-
-  const handleSubmitForm = (data: CompromiseForm) => {
-    const { date, hour, work_id, pet_id, recurrence } = data;
-
-    const splitedDate = date.split('');
-
-    const year = Number(
-      `${splitedDate[0]}${splitedDate[1]}${splitedDate[2]}${splitedDate[3]}`,
-    );
-    const month = Number(`${splitedDate[5]}${splitedDate[6]}`) - 1;
-    const day = Number(`${splitedDate[8]}${splitedDate[9]}`);
-
-    const formatedDate = new Date(year, month, day).toLocaleDateString(); // dd/mm/yyyy
-
-    if (compromise.recurrence) {
-      api
-        .put(`/appointments/${compromise.id}`, {
-          date: compromise.date,
-          hour: compromise.hour,
-          work_id: compromise.work.id,
-          pet_id: compromise.pet.id,
-          done: true,
-        })
-        .then(() => {
-          toast.success('Serviço concluído!');
-          renderDay(compromise.date);
-        })
-        .catch(() => {
-          toast.error('Erro na conclusão do Serviço!');
-        });
-      api
-        .post('/appointments', {
-          date: formatedDate,
-          hour,
-          work_id,
-          pet_id,
-          done: false,
-          recurrence,
-        })
-        .then(() => {
-          toast.success('Serviço remarcado!');
-          renderDay(compromise.date);
-        })
-        .catch(() => {
-          toast.error('Erro na remarcação do Serviço!');
-        });
-      setModalVisible(false);
-    } else {
-      api
-        .put(`/appointments/${compromise.id}`, {
-          date: compromise.date,
-          hour: compromise.hour,
-          work_id: compromise.work.id,
-          pet_id: compromise.pet.id,
-          done: true,
-        })
-        .then(() => {
-          toast.success('Serviço concluído!');
-          renderDay(compromise.date);
-          setModalVisible(false);
-        })
-        .catch(() => {
-          toast.error('Erro na conclusão do Serviço!');
-        });
-    }
-  };
-
+  const splitDate = compromise.date.split('/')
+  const dateFormatted = format(new Date(+splitDate[2], splitDate[1] - 1, +splitDate[0]),'yyyy-MM-dd')
+  
   return (
     <>
       <Container done={compromise.done}>
@@ -220,7 +87,7 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
 
           <ContainerButtonsActions>
             {compromise.done ? (
-              <ButtonActions onClick={handleUnfinishedCompromise}>
+              <ButtonActions onClick={()=> handleUnfinishedCompromise(compromise)}>
                 <ImCheckmark size={20} color={colors.main} />
               </ButtonActions>
             ) : (
@@ -238,15 +105,16 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
         <Modal visible={modalVisible} setVisible={setModalVisible}>
           <Formik
             initialValues={{
-              date: compromise.date,
+              date: dateFormatted,
               hour: compromise.hour,
               pet_id: compromise.pet.id,
               work_id: compromise.work.id,
               done: true,
+              dayInWeek : [],
               recurrence: compromise.recurrence,
+              endDate: ''
             }}
-            // validationSchema={formSchemaCompromise}
-            onSubmit={handleSubmitForm}
+            onSubmit={(props) => handleSubmitEditForm(compromise,props)}
           >
             {({ handleChange, touched, values, errors, handleSubmit }) => (
               <FormCustom onSubmit={handleSubmit}>
@@ -301,40 +169,72 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
                     </option>
                   ))}
                 </Select>
-                {compromise.recurrence && (
-                  <Select
+                {!compromise.recurrence && (
+                  <>
+                  <ContainerInputDate>
+                  <p>Recorrência? </p>
+                  <input
+                    type="checkbox"
                     name="recurrence"
-                    value={values.recurrence}
                     onChange={handleChange('recurrence')}
-                    messageError={
-                      errors.recurrence && touched.recurrence
-                        ? errors.recurrence
-                        : ''
-                    }
-                  >
-                    <option value="">Frequência</option>
-                    <option value="7d">7 dias</option>
-                    <option value="15d">15 dias</option>
-                    <option value="30d">30 dias</option>
-                  </Select>
+                  />
+                </ContainerInputDate>
+                <ContainerInputDate>
+                  {values.recurrence && (
+                    stringDaysWeek.map((dayWeek,index) => (
+                      <Day>
+                        <p>{dayWeek}</p>
+                        <input type='checkbox' name='dayInWeek' value={index}  onChange={handleChange('dayInWeek')}/>
+                      </Day>
+                    ))
+                  )}
+                </ContainerInputDate>
+                {values.recurrence && (
+                <ContainerInputDate>
+                  <p>Data Final: </p>
+                  <input
+                    type="date"
+                    name="endDate"
+                    value={values.endDate}
+                    onChange={handleChange('endDate')}
+                  />
+                </ContainerInputDate>
+              )}
+              </>
                 )}
                 <Button layoutColor="button-green" type="submit">
                   <FiSave size={24} />
                   <span>
-                    {compromise.recurrence ? 'Concluir e Remarcar' : 'Concuir'}
+                    Concluir
                   </span>
                 </Button>
               </FormCustom>
             )}
-          </Formik>
+          </Formik> 
         </Modal>
       )}
       {modalDeleteVisible && (
         <Modal visible={modalDeleteVisible} setVisible={setModalDeleteVisible}>
-          <h2 style={{ marginTop: '1rem' }}>
-            Deseja excluir este compromisso ?
-          </h2>
+        
+        <DeleteContainer>
+          <DeleteOption>
+            <input type="radio" id="deleteOne" name="delete" value='one' onChange={(e) => setType(e.target.value)} />
+            <label htmlFor="deleteOne">Deseja excluir apenas este evento ?</label>
+          </DeleteOption>
+        {compromise.recurrence && (
+          <>
+          <DeleteOption >
+            <input type="radio" id="deleteSince" name="delete" value='since' onChange={(e) => setType(e.target.value)} />
+            <label htmlFor="deleteSince">Deseja excluir deste evento para frente ?</label>
+          </DeleteOption>
 
+          <DeleteOption>
+            <input type="radio" id="deleteAll" name="delete" value='all' onChange={(e) => setType(e.target.value)}/>
+            <label htmlFor="deleteAll">Deseja excluir todos os eventos ?</label>
+          </DeleteOption>
+          </>
+        )}
+        </DeleteContainer>
           <ContainerButtonsModal>
             <Button
               layoutColor="button-outline"
@@ -347,7 +247,7 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
               layoutColor="button-filled"
               type="button"
               onClick={() => {
-                handleDeleteCompromise(compromise.id);
+                handleDeleteCompromise(compromise);
                 setModalDeleteVisible(false);
               }}
             >

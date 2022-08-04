@@ -110,4 +110,20 @@ export const ContainerInputDate = styled.div`
     border: 1px solid ${lighten(0.5, '#666360')};
     border-radius: 10px;
   }
+
+  input[type=number] {
+    width: 20%;
+  }
 `;
+
+export const WeeksOfDay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const Day = styled.div`
+ flex:1;
+ font-size: 12px;
+ text-align: center;
+`

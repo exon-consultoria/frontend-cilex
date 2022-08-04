@@ -104,3 +104,27 @@ export const ContainerButtonsModal = styled.div`
 
   margin-top: 3rem;
 `;
+
+export const DeleteContainer = styled.div`
+text-align: left;
+`
+
+export const DeleteOption = styled.div`
+margin: 15px 0;
+
+input {
+  margin-right: 5px;
+}
+`
+
+export const WeeksOfDay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const Day = styled.div`
+ flex:1;
+ font-size: 12px;
+ text-align: center;
+`
