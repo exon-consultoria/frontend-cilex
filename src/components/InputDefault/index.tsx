@@ -1,5 +1,4 @@
 import React, { useState, InputHTMLAttributes } from 'react';
-import { Field, FieldProps } from 'formik';
 import MaskedInput from 'react-text-mask';
 
 import { IconBaseProps } from 'react-icons';

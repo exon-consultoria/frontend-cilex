@@ -56,7 +56,7 @@ const formSchemaTransfer = Yup.object().shape({
 });
 
 const RegisterTransaction: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
 
   const [typeTransaction, setTypeTransaction] = useState<

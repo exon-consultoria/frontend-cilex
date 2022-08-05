@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../hooks/auth';
 import api from '../../../services/api';
 
 import ButtonBack from '../../../components/ButtonBack';
@@ -25,7 +24,6 @@ export interface Icompany {
 
 const ListCompany: React.FC = () => {
   const { colors } = useContext(ThemeContext);
-  const { user } = useAuth();
 
   const [companies, setCompanies] = useState<Icompany[]>([]);
 

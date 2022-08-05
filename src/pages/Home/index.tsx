@@ -10,7 +10,7 @@ import HeaderHome from '../../components/HeaderHome';
 import { Container, Options } from './styles';
 
 const Home: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Container>

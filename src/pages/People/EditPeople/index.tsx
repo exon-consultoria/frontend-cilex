@@ -31,7 +31,6 @@ import ModalDelete from '../../../components/ModalDelete';
 import {
   Container,
   Main,
-  Badge,
   InfoCard,
   HeaderContent,
   ContainerCompanyData,
@@ -68,7 +67,7 @@ export interface IRole {
 }
 
 const EditPeople: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
 
@@ -152,7 +151,7 @@ const EditPeople: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already a person registered with the same code"
+              'There\'s already a person registered with the same code'
             ) {
               toast.error(
                 'Já existe uma pessoa cadastrada com o mesmo código!',

@@ -11,7 +11,6 @@ import {
 import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../hooks/auth';
 import api from '../../../services/api';
 import { maskPhone, maskCEP, maskCNPJ } from '../../../utils/masks';
 
@@ -66,9 +65,8 @@ interface MatrizID {
 }
 
 const EditCompany: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
-  const { user } = useAuth();
   const { id } = useParams();
 
   const [companies, setCompanies] = useState<IOpt[]>([]);
@@ -155,7 +153,7 @@ const EditCompany: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already a company registered with the same code"
+              'There\'s already a company registered with the same code'
             ) {
               toast.error(
                 'Já existe uma empresa cadastrada com o mesmo código!',

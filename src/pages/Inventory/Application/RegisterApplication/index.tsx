@@ -23,7 +23,7 @@ const formSchemaApplication = Yup.object().shape({
 });
 
 const RegisterApplication: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterApplication) => {
@@ -43,7 +43,7 @@ const RegisterApplication: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma aplicação cadastrada com o mesmo código!',
@@ -62,8 +62,8 @@ const RegisterApplication: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Registro da Aplicação" />
-        <ButtonBack destinationBack="/inventory/application" />
+        <Header pageName='Registro da Aplicação' />
+        <ButtonBack destinationBack='/inventory/application' />
         <Main>
           <Formik
             initialValues={{
@@ -75,11 +75,11 @@ const RegisterApplication: React.FC = () => {
           >
             {({ handleChange, touched, values, errors, handleSubmit }) => (
               <FormCustom onSubmit={handleSubmit}>
-                <div id="align-inputs">
+                <div id='align-inputs'>
                   <InputFormik
-                    name="code"
-                    type="text"
-                    placeholder="Código"
+                    name='code'
+                    type='text'
+                    placeholder='Código'
                     value={values.code}
                     onChange={handleChange('code')}
                     messageError={
@@ -88,9 +88,9 @@ const RegisterApplication: React.FC = () => {
                     maxLength={6}
                   />
                   <InputFormik
-                    name="description"
-                    type="text"
-                    placeholder="Descrição"
+                    name='description'
+                    type='text'
+                    placeholder='Descrição'
                     value={values.description}
                     onChange={handleChange('description')}
                     messageError={
@@ -100,8 +100,8 @@ const RegisterApplication: React.FC = () => {
                     }
                   />
                 </div>
-                <div id="align-button-save">
-                  <Button layoutColor="button-green" type="submit">
+                <div id='align-button-save'>
+                  <Button layoutColor='button-green' type='submit'>
                     <FiSave size={24} />
                     <span>Salvar</span>
                   </Button>

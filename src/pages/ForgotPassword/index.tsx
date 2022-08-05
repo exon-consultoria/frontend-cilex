@@ -12,7 +12,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import InputFormik from '../../components/InputFormik';
 import Button from '../../components/Button';
 
-import { Container, Background, AnimationContainer, Content } from './styles';
+import { Container, AnimationContainer, Content } from './styles';
 import api from '../../services/api';
 
 interface ForgotPasswordFormData {

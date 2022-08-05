@@ -21,7 +21,7 @@ interface RegisterWorkForm {
 }
 
 const RegisterWork: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const formSchemaWork = Yup.object().shape({
     code: Yup.string().required('Código Obrigatório'),
@@ -49,7 +49,7 @@ const RegisterWork: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um trabalho cadastrado com o mesmo código!',
@@ -68,8 +68,8 @@ const RegisterWork: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Registro de Trabalho" />
-        <ButtonBack destinationBack="/work" />
+        <Header pageName='Registro de Trabalho' />
+        <ButtonBack destinationBack='/work' />
         <Main>
           <Formik
             initialValues={{
@@ -82,11 +82,11 @@ const RegisterWork: React.FC = () => {
           >
             {({ handleChange, touched, values, errors, handleSubmit }) => (
               <FormCustom onSubmit={handleSubmit}>
-                <div id="align-inputs">
+                <div id='align-inputs'>
                   <InputFormik
-                    name="code"
-                    type="text"
-                    placeholder="Código"
+                    name='code'
+                    type='text'
+                    placeholder='Código'
                     value={values.code}
                     onChange={handleChange('code')}
                     messageError={
@@ -95,9 +95,9 @@ const RegisterWork: React.FC = () => {
                     maxLength={6}
                   />
                   <InputFormik
-                    name="description"
-                    type="text"
-                    placeholder="Trabalho"
+                    name='description'
+                    type='text'
+                    placeholder='Trabalho'
                     value={values.description}
                     onChange={handleChange('description')}
                     messageError={
@@ -109,16 +109,16 @@ const RegisterWork: React.FC = () => {
                   <ContainerInputColor>
                     <span>Cor</span>
                     <input
-                      type="color"
-                      name="main"
+                      type='color'
+                      name='main'
                       value={values.color}
                       onChange={handleChange('color')}
                     />
                     <span>{values.color}</span>
                   </ContainerInputColor>
                 </div>
-                <div id="align-button-save">
-                  <Button layoutColor="button-green" type="submit">
+                <div id='align-button-save'>
+                  <Button layoutColor='button-green' type='submit'>
                     <FiSave size={24} />
                     <span>Salvar</span>
                   </Button>

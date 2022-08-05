@@ -23,7 +23,7 @@ const formSchemaGroup = Yup.object().shape({
 });
 
 const RegisterGroup: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterGroup) => {
@@ -43,7 +43,7 @@ const RegisterGroup: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error('Já existe um grupo cadastrado com o mesmo código!');
             }
@@ -60,8 +60,8 @@ const RegisterGroup: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Registro de Grupo" />
-        <ButtonBack destinationBack="/inventory/group" />
+        <Header pageName='Registro de Grupo' />
+        <ButtonBack destinationBack='/inventory/group' />
         <Main>
           <Formik
             initialValues={{
@@ -73,11 +73,11 @@ const RegisterGroup: React.FC = () => {
           >
             {({ handleChange, touched, values, errors, handleSubmit }) => (
               <FormCustom onSubmit={handleSubmit}>
-                <div id="align-inputs">
+                <div id='align-inputs'>
                   <InputFormik
-                    name="code"
-                    type="text"
-                    placeholder="Código"
+                    name='code'
+                    type='text'
+                    placeholder='Código'
                     value={values.code}
                     onChange={handleChange('code')}
                     messageError={
@@ -86,9 +86,9 @@ const RegisterGroup: React.FC = () => {
                     maxLength={6}
                   />
                   <InputFormik
-                    name="description"
-                    type="text"
-                    placeholder="Descrição"
+                    name='description'
+                    type='text'
+                    placeholder='Descrição'
                     value={values.description}
                     onChange={handleChange('description')}
                     messageError={
@@ -98,8 +98,8 @@ const RegisterGroup: React.FC = () => {
                     }
                   />
                 </div>
-                <div id="align-button-save">
-                  <Button layoutColor="button-green" type="submit">
+                <div id='align-button-save'>
+                  <Button layoutColor='button-green' type='submit'>
                     <FiSave size={24} />
                     <span>Salvar</span>
                   </Button>

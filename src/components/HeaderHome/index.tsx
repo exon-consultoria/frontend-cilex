@@ -1,4 +1,3 @@
-/* eslint-disable import/no-duplicates */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiPower } from 'react-icons/fi';
@@ -20,7 +19,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ message }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { user, signOut } = useAuth();
   const { toggleTheme } = useToggleTheme();
   const { company, clearCompany } = useCompany();

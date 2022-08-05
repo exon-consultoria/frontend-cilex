@@ -17,7 +17,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ pageName, disabledHome = false }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { signOut } = useAuth();
   const { toggleTheme } = useToggleTheme();
   const { company, clearCompany } = useCompany();

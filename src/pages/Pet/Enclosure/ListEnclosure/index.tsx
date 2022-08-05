@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../../hooks/auth';
 import api from '../../../../services/api';
 import { IEnclosure } from '../../../../types/pet/enclosure';
 
 import NewButton from '../../../../components/NewButton';
-import Button from '../../../../components/Button';
 import DefaultTable from '../../../../components/DefaultTable';
 import Header from '../../../../components/Header';
 import ButtonBack from '../../../../components/ButtonBack';
@@ -17,7 +15,6 @@ import EmptyData from '../../../../components/EmptyData';
 import { Container, Main } from './styles';
 
 const ListEnclosure: React.FC = () => {
-  const { user } = useAuth();
   const { colors } = useContext(ThemeContext);
 
   const [enclosures, setEnclosures] = useState<IEnclosure[]>([]);

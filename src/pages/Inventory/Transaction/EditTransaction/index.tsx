@@ -31,7 +31,7 @@ const formSchemaTransaction = Yup.object().shape({
 });
 
 const EditTransaction: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();

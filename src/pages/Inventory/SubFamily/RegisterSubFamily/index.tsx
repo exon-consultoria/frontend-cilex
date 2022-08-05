@@ -26,7 +26,7 @@ const formSchemaSubFamily = Yup.object().shape({
 });
 
 const RegisterSubFamily: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [families, setFamilies] = useState<IFamily[]>([]);
 
@@ -55,7 +55,7 @@ const RegisterSubFamily: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma sub-família cadastrada com o mesmo código!',

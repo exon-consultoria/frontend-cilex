@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -8,7 +7,6 @@ import { FiSave } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../hooks/auth';
 import api from '../../../services/api';
 import { maskPhone, maskCPF, maskCEP, maskCNPJ } from '../../../utils/masks';
 import {
@@ -67,8 +65,7 @@ const optionsSelect = [
 ];
 
 const RegisterPeople: React.FC = () => {
-  let navigate = useNavigate();
-  const { user } = useAuth();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
 
   const [isPhysicalPerson, setIsPhysicalPerson] = useState(false);
@@ -162,7 +159,7 @@ const RegisterPeople: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already a person registered with the same code"
+              'There\'s already a person registered with the same code'
             ) {
               toast.error(
                 'Já existe uma pessoa cadastrada com o mesmo código!',

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container } from './styles';
 
 const ChangeCompany: React.FC = ({ ...rest }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleClick = useCallback(() => {
     navigate('/chosecompany');

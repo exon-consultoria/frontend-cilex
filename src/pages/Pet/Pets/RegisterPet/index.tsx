@@ -70,14 +70,13 @@ const formSchemaPet = Yup.object().shape({
   castrated: Yup.boolean(),
   items: Yup.string(),
   enclosure_id: Yup.string(),
-  // eslint-disable-next-line react/forbid-prop-types
   vaccines: Yup.array(),
   owner_id: Yup.string().required('Dono Obrigatório'),
   note: Yup.string(),
 });
 
 const RegisterPet: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
 
   const [peoples, setPeoples] = useState<People[]>([]);

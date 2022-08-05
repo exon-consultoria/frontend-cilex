@@ -25,7 +25,7 @@ const ConsultStorage: React.FC = () => {
   useEffect(() => {
     try {
       api
-        .post(`/product/calculateInventory`, {
+        .post('/product/calculateInventory', {
           storage_id: id,
           startDate: '2021-11-26 17:47:03.050257',
           endDate: '2022-01-31T22:44:04.467Z',
@@ -39,9 +39,9 @@ const ConsultStorage: React.FC = () => {
   }, [id]);
 
   return (
-    <DefaultLayout pageNameHeader="Consultar Estoque">
-      <div id="align-content">
-        <ButtonBack destinationBack="/inventory/storage" />
+    <DefaultLayout pageNameHeader='Consultar Estoque'>
+      <div id='align-content'>
+        <ButtonBack destinationBack='/inventory/storage' />
         {products.length > 0 ? (
           <DefaultTable tbh={['Produto', 'Quantidade']}>
             <tbody>

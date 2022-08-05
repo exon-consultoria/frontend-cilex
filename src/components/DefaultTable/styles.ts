@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { shade, opacify } from 'polished';
 
 export const Table = styled.table`
   max-width: 100%;

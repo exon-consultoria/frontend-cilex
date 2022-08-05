@@ -14,7 +14,6 @@ import { IRegisterStorage } from '../../../../types/storage/storage';
 import Header from '../../../../components/Header';
 import Button from '../../../../components/Button';
 import InputFormik from '../../../../components/InputFormik';
-import InputDefault from '../../../../components/InputDefault';
 import ButtonBack from '../../../../components/ButtonBack';
 import ModalDelete from '../../../../components/ModalDelete';
 
@@ -28,7 +27,7 @@ const formSchemaStorage = Yup.object().shape({
 });
 
 const EditStorage: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();
@@ -60,7 +59,7 @@ const EditStorage: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um estoque cadastrado com o mesmo código!',

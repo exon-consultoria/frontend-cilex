@@ -27,7 +27,7 @@ const formSchemaApplication = Yup.object().shape({
 });
 
 const EditApplication: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();
@@ -61,7 +61,7 @@ const EditApplication: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma aplicação cadastrada com o mesmo código!',

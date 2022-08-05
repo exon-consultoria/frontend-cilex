@@ -21,7 +21,7 @@ interface RegisterRoleForm {
 }
 
 const RegisterRole: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const formSchemaRole = Yup.object().shape({
     code: Yup.string().required('Código Obrigatório'),
@@ -49,7 +49,7 @@ const RegisterRole: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error('Já existe um cargo cadastrado com o mesmo código!');
             }

@@ -6,7 +6,6 @@ import { FiSave } from 'react-icons/fi';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 
-import { useAuth } from '../../../hooks/auth';
 import { useHasUserCompany } from '../../../hooks/useHasUserCompany';
 import api from '../../../services/api';
 import { maskPhone, maskCEP, maskCNPJ } from '../../../utils/masks';
@@ -67,8 +66,7 @@ interface MatrizID {
 }
 
 const RegisterCompany: React.FC = () => {
-  let navigate = useNavigate();
-  const { user } = useAuth();
+  const navigate = useNavigate();
   const { hasUserCompany, setHasUserCompany } = useHasUserCompany();
 
   const [matrizCompanies, setMatrizCompanies] = useState<MatrizID[]>([]);
@@ -148,7 +146,7 @@ const RegisterCompany: React.FC = () => {
 
               if (
                 dataError.message ===
-                "There's already a company registered with the same code"
+                'There\'s already a company registered with the same code'
               ) {
                 toast.error(
                   'Já existe uma empresa cadastrada com o mesmo código!',
@@ -170,8 +168,8 @@ const RegisterCompany: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Registro de Empresa" disabledHome={!hasUserCompany} />
-        {hasUserCompany && <ButtonBack destinationBack="/company" />}
+        <Header pageName='Registro de Empresa' disabledHome={!hasUserCompany} />
+        {hasUserCompany && <ButtonBack destinationBack='/company' />}
 
         <Step>
           <Formik
@@ -196,11 +194,11 @@ const RegisterCompany: React.FC = () => {
               <FormCustom onSubmit={handleSubmit}>
                 {isStepOne ? (
                   <>
-                    <div id="align-inputs">
+                    <div id='align-inputs'>
                       <InputFormik
-                        name="code"
-                        type="text"
-                        placeholder="Código"
+                        name='code'
+                        type='text'
+                        placeholder='Código'
                         value={values.code}
                         onChange={handleChange('code')}
                         messageError={
@@ -209,11 +207,11 @@ const RegisterCompany: React.FC = () => {
                         maxLength={6}
                       />
                       <Select
-                        name="matriz_id"
+                        name='matriz_id'
                         value={values.matriz_id}
                         onChange={handleChange('matriz_id')}
                       >
-                        <option value="">Matriz</option>
+                        <option value=''>Matriz</option>
                         {matrizCompanies.map(companyMatriz => (
                           <option
                             key={companyMatriz.id}
@@ -224,9 +222,9 @@ const RegisterCompany: React.FC = () => {
                         ))}
                       </Select>
                       <InputFormik
-                        name="cnpj"
-                        type="text"
-                        placeholder="CNPJ"
+                        name='cnpj'
+                        type='text'
+                        placeholder='CNPJ'
                         mask={maskCNPJ}
                         messageError={
                           errors.cnpj && touched.cnpj ? errors.cnpj : ''
@@ -234,9 +232,9 @@ const RegisterCompany: React.FC = () => {
                         maxLength={18}
                       />
                       <InputFormik
-                        name="razao_social"
-                        type="text"
-                        placeholder="Razão Social"
+                        name='razao_social'
+                        type='text'
+                        placeholder='Razão Social'
                         value={values.razao_social}
                         onChange={handleChange('razao_social')}
                         messageError={
@@ -246,9 +244,9 @@ const RegisterCompany: React.FC = () => {
                         }
                       />
                       <InputFormik
-                        name="nome_fantasia"
-                        type="text"
-                        placeholder="Nome Fantasia"
+                        name='nome_fantasia'
+                        type='text'
+                        placeholder='Nome Fantasia'
                         value={values.nome_fantasia}
                         onChange={handleChange('nome_fantasia')}
                         messageError={
@@ -258,9 +256,9 @@ const RegisterCompany: React.FC = () => {
                         }
                       />
                       <InputFormik
-                        name="email"
-                        type="email"
-                        placeholder="E-mail"
+                        name='email'
+                        type='email'
+                        placeholder='E-mail'
                         value={values.email}
                         onChange={handleChange('email')}
                         messageError={
@@ -268,18 +266,18 @@ const RegisterCompany: React.FC = () => {
                         }
                       />
                       <InputFormik
-                        name="tel"
-                        type="text"
-                        placeholder="Telefone"
+                        name='tel'
+                        type='text'
+                        placeholder='Telefone'
                         mask={maskPhone}
                         messageError={
                           errors.tel && touched.tel ? errors.tel : ''
                         }
                       />
                       <InputFormik
-                        name="endereco"
-                        type="text"
-                        placeholder="Endereço"
+                        name='endereco'
+                        type='text'
+                        placeholder='Endereço'
                         value={values.endereco}
                         onChange={handleChange('endereco')}
                         messageError={
@@ -289,26 +287,26 @@ const RegisterCompany: React.FC = () => {
                         }
                       />
                       <InputFormik
-                        name="cep"
-                        type="text"
-                        placeholder="CEP"
+                        name='cep'
+                        type='text'
+                        placeholder='CEP'
                         mask={maskCEP}
                         messageError={
                           errors.cep && touched.cep ? errors.cep : ''
                         }
                       />
                       <InputFormik
-                        name="uf"
-                        type="text"
-                        placeholder="Estado"
+                        name='uf'
+                        type='text'
+                        placeholder='Estado'
                         value={values.uf}
                         onChange={handleChange('uf')}
                         messageError={errors.uf && touched.uf ? errors.uf : ''}
                       />
                       <InputFormik
-                        name="info"
-                        type="text"
-                        placeholder="Informações"
+                        name='info'
+                        type='text'
+                        placeholder='Informações'
                         value={values.info}
                         onChange={handleChange('info')}
                         messageError={
@@ -316,10 +314,10 @@ const RegisterCompany: React.FC = () => {
                         }
                       />
                     </div>
-                    <div id="align-button-save">
+                    <div id='align-button-save'>
                       <Button
-                        layoutColor="button-green"
-                        type="button"
+                        layoutColor='button-green'
+                        type='button'
                         onClick={() => setIsStepOne(false)}
                       >
                         <span>Continuar</span>
@@ -334,13 +332,13 @@ const RegisterCompany: React.FC = () => {
                           key={segment.id}
                           selected={segmentIdSelected === segment.id}
                         >
-                          <div className="card">
-                            <div className="front">
+                          <div className='card'>
+                            <div className='front'>
                               <i className={segment.classIcon} />
                               <h3>{segment.name}</h3>
                               <p>{segment.description}</p>
                             </div>
-                            <div className="back">
+                            <div className='back'>
                               <h3>Lista de Módulos</h3>
 
                               <ul>
@@ -352,7 +350,7 @@ const RegisterCompany: React.FC = () => {
                                 ))}
                               </ul>
                               <Button
-                                layoutColor="button-green"
+                                layoutColor='button-green'
                                 onClick={() => setSegmentIdSelected(segment.id)}
                               >
                                 {segmentIdSelected === segment.id
@@ -366,15 +364,15 @@ const RegisterCompany: React.FC = () => {
                     </ContainerCards>
                     <AlignButtonsStepTwo>
                       <Button
-                        layoutColor="button-green"
-                        type="button"
+                        layoutColor='button-green'
+                        type='button'
                         onClick={() => setIsStepOne(true)}
                       >
                         <HiOutlineArrowLeft size={24} />
                         <span>Voltar</span>
                       </Button>
                       <Button
-                        layoutColor="button-green"
+                        layoutColor='button-green'
                         onClick={() => {
                           if (
                             errors.code ||

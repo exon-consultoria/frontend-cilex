@@ -50,7 +50,7 @@ const formSchemaProduct = Yup.object().shape({
 });
 
 const RegisterGroup: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [storages, setStorages] = useState<IStorage[]>([]);
   const [types, setTypes] = useState<IType[]>([]);
@@ -157,7 +157,7 @@ const RegisterGroup: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um produto cadastrado com o mesmo código!',

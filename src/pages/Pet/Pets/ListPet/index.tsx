@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../../hooks/auth';
 import api from '../../../../services/api';
 
 import NewButton from '../../../../components/NewButton';
 import DefaultTable from '../../../../components/DefaultTable';
-import ChangeCompany from '../../../../components/ChangeCompany';
 import Header from '../../../../components/Header';
 import ButtonBack from '../../../../components/ButtonBack';
 import EmptyData from '../../../../components/EmptyData';
@@ -24,7 +22,6 @@ export interface IPets {
 }
 
 const ListPet: React.FC = () => {
-  const { user } = useAuth();
   const { colors } = useContext(ThemeContext);
 
   const [pets, setPets] = useState<IPets[]>([]);

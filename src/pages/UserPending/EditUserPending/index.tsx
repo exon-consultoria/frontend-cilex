@@ -47,7 +47,7 @@ export interface UserGroup {
 }
 
 const EditUserPending: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id }: any = useParams();
 
   const [user, setUser] = useState<UserPending>({} as UserPending);

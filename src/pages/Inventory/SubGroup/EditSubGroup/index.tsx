@@ -28,7 +28,7 @@ const formSchemaSubGroup = Yup.object().shape({
 });
 
 const EditSubGroup: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();
@@ -65,7 +65,7 @@ const EditSubGroup: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um sub-grupo cadastrado com o mesmo código!',

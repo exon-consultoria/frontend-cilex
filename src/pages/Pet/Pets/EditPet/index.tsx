@@ -68,7 +68,7 @@ interface RegisterPetForm {
 }
 
 const EditPet: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id }: any = useParams();
   const { colors } = useContext(ThemeContext);
   const { deleteDataFromModule } = useCrudModules();
@@ -204,7 +204,6 @@ const EditPet: React.FC = () => {
     castrated: Yup.boolean(),
     items: Yup.string(),
     enclosure_id: Yup.string(),
-    // eslint-disable-next-line react/forbid-prop-types
     vaccines: Yup.array(),
     owner_id: Yup.string(),
     note: Yup.string(),

@@ -27,7 +27,7 @@ const formSchemaUnitMeasure = Yup.object().shape({
 });
 
 const EditUnitMeasure: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();
@@ -59,7 +59,7 @@ const EditUnitMeasure: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma unidade de medida cadastrada com o mesmo código!',

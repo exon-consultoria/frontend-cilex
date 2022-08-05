@@ -10,7 +10,7 @@ interface ButtonBackProps {
 }
 
 const ButtonBack: React.FC<ButtonBackProps> = ({ destinationBack }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
 
   const handleBack = useCallback((): void => {

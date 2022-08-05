@@ -1,12 +1,9 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { FiSave } from 'react-icons/fi';
-
-import { components } from 'react-select';
 
 import api from '../../../services/api';
 
@@ -18,7 +15,6 @@ import CustomSelect from '../../../components/CustomSelect';
 
 import { Container, Main, FormCustom } from './styles';
 
-const { Option } = components;
 
 interface RegisterUserGroupForm {
   code: string;
@@ -36,17 +32,13 @@ interface Module {
   };
 }
 
-interface Company {
-  id: string;
-}
-
 interface SelectFields {
   value: string;
   label: string;
 }
 
 const RegisterUserGroup: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const company = localStorage.getItem('@Cilex:companySelected');
 
   const [listModules, setListModules] = useState<SelectFields[]>([]);
@@ -54,7 +46,6 @@ const RegisterUserGroup: React.FC = () => {
   const formSchemaUserGroup = Yup.object().shape({
     code: Yup.string().required('Código Obrigatório'),
     description: Yup.string().required('Descrição Obrigatória'),
-    // eslint-disable-next-line react/forbid-prop-types
     modules: Yup.array(),
   });
 
@@ -78,7 +69,7 @@ const RegisterUserGroup: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um grupo de usuários cadastrado com o mesmo código!',

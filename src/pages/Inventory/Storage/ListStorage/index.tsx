@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
-import { BsList } from 'react-icons/bs';
 import { ThemeContext } from 'styled-components';
 
 import api from '../../../../services/api';
@@ -27,11 +26,11 @@ const ListStorage: React.FC = () => {
 
   return (
     <Container>
-      <Header pageName="Estoque" />
+      <Header pageName='Estoque' />
       <Main>
-        <div id="align-content">
-          <ButtonBack destinationBack="/inventory" />
-          <NewButton to="/inventory/storage/register">Novo</NewButton>
+        <div id='align-content'>
+          <ButtonBack destinationBack='/inventory' />
+          <NewButton to='/inventory/storage/register'>Novo</NewButton>
           {storages.length > 0 ? (
             <DefaultTable tbh={['Código', 'Estoque', 'Ações']}>
               <tbody>
@@ -39,7 +38,7 @@ const ListStorage: React.FC = () => {
                   <tr key={storage.id}>
                     <td>{storage.code}</td>
                     <td>{storage.description}</td>
-                    <td id="align-action-icons">
+                    <td id='align-action-icons'>
                       <Link
                         style={{ textDecoration: 'none' }}
                         to={`/inventory/storage/${storage.id}`}

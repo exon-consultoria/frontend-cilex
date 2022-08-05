@@ -23,7 +23,7 @@ const formSchemaUnitMeasure = Yup.object().shape({
 });
 
 const RegisterUnitMeasure: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterUnitMeasure) => {
@@ -43,7 +43,7 @@ const RegisterUnitMeasure: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma unidade de medida cadastrada com o mesmo código!',

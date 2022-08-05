@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
 
   const { user, updateUser } = useAuth();
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = useCallback(
     async (data: ProfileFormData) => {

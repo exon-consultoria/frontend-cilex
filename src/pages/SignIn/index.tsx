@@ -25,7 +25,7 @@ const formSchemaLogin = Yup.object().shape({
 });
 
 const SignIn: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { signIn } = useAuth();
 
   const handleSubmitForm = useCallback(

@@ -28,7 +28,7 @@ const formSchemaDimension = Yup.object().shape({
 });
 
 const EditDimension: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();
@@ -60,7 +60,7 @@ const EditDimension: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma dimensão cadastrada com o mesmo código!',
@@ -79,26 +79,26 @@ const EditDimension: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Editar Dimensão" />
+        <Header pageName='Editar Dimensão' />
         {dimension && (
           <Main>
             <HeaderContent>
-              <div id="container-arrow">
-                <ButtonBack destinationBack="/inventory" />
+              <div id='container-arrow'>
+                <ButtonBack destinationBack='/inventory' />
               </div>
-              <div id="container-titles">
+              <div id='container-titles'>
                 <h2>{dimension.code}</h2>
                 <p>{dimension.description}</p>
               </div>
-              <div id="container-buttons-actions">
+              <div id='container-buttons-actions'>
                 <Button
-                  layoutColor="button-filled"
+                  layoutColor='button-filled'
                   onClick={() => setEditting(!editting)}
                 >
-                  <HiOutlinePencilAlt size={24} color="#fefefe" />
+                  <HiOutlinePencilAlt size={24} color='#fefefe' />
                 </Button>
                 <Button
-                  layoutColor="button-outline"
+                  layoutColor='button-outline'
                   onClick={() => setShowModalDelete(true)}
                 >
                   <HiOutlineTrash size={24} color={colors.main} />
@@ -117,11 +117,11 @@ const EditDimension: React.FC = () => {
               >
                 {({ handleChange, touched, values, errors, handleSubmit }) => (
                   <FormCustom onSubmit={handleSubmit}>
-                    <div id="align-inputs">
+                    <div id='align-inputs'>
                       <InputFormik
-                        name="code"
-                        type="text"
-                        placeholder="Código"
+                        name='code'
+                        type='text'
+                        placeholder='Código'
                         value={values.code}
                         onChange={handleChange('code')}
                         messageError={
@@ -130,9 +130,9 @@ const EditDimension: React.FC = () => {
                         maxLength={6}
                       />
                       <InputFormik
-                        name="description"
-                        type="text"
-                        placeholder="Dimensão"
+                        name='description'
+                        type='text'
+                        placeholder='Dimensão'
                         value={values.description}
                         onChange={handleChange('description')}
                         messageError={
@@ -142,8 +142,8 @@ const EditDimension: React.FC = () => {
                         }
                       />
                     </div>
-                    <div id="align-button-save">
-                      <Button layoutColor="button-green" type="submit">
+                    <div id='align-button-save'>
+                      <Button layoutColor='button-green' type='submit'>
                         <FiSave size={24} />
                         <span>Salvar</span>
                       </Button>

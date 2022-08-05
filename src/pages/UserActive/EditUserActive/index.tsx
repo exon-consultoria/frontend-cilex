@@ -48,7 +48,7 @@ export interface UserGroup {
 }
 
 const EditUserActive: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id }: any = useParams();
   const { colors } = useContext(ThemeContext);
 

@@ -23,7 +23,7 @@ interface CrudModulesProviderProps {
 }
 
 export const CrudModulesProvider: React.FC<CrudModulesProviderProps> = ({ children }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   async function deleteDataFromModule({
     id,

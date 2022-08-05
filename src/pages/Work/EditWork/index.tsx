@@ -31,7 +31,7 @@ interface RegisterWorkForm {
 }
 
 const EditWork: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id }: any = useParams();
   const { colors } = useContext(ThemeContext);
   const { deleteDataFromModule } = useCrudModules();
@@ -68,7 +68,7 @@ const EditWork: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um trabalho cadastrado com o mesmo código!',

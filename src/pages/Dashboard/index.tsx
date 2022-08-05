@@ -1,17 +1,16 @@
 import React, { useCallback } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { FiHome, FiPower } from 'react-icons/fi';
-import chefChoose from '../../assets/chefChoose.svg';
 import { useAuth } from '../../hooks/auth';
 
 import Button from '../../components/Button';
 
-import { Container, Header, Options, Greetings } from './styles';
+import { Container, Header, Greetings } from './styles';
 
 const Dashboard: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { user, signOut } = useAuth();
 
   const handleLogout = useCallback((): void => {

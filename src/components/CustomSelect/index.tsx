@@ -1,5 +1,4 @@
 import { FieldProps } from 'formik';
-import React from 'react';
 import Select, { OptionsType, ValueType } from 'react-select';
 
 interface Option {

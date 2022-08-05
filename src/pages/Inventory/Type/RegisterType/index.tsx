@@ -26,7 +26,7 @@ const formSchemaType = Yup.object().shape({
 });
 
 const RegisterType: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
 
   const [acceptStructure, setAcceptStructure] = useState(false);
@@ -50,7 +50,7 @@ const RegisterType: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error('Já existe um tipo cadastrado com o mesmo código!');
             }

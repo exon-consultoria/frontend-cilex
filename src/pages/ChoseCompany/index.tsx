@@ -1,15 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
-// import { transparentize } from 'polished';
 import { transparentize } from 'polished';
-import cilexLogo from '../../assets/cilex-logo.png';
 
 import chooseSvg from '../../assets/town.svg';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import { useHasUserCompany } from '../../hooks/useHasUserCompany';
-// import { useToggleTheme } from '../../hooks/useToggleTheme';
 
 import HeaderHome from '../../components/HeaderHome';
 
@@ -26,7 +23,7 @@ interface IUserCompany {
 }
 
 const ChoseCompany: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { toggleTheme } = useToggleTheme();
   const { user } = useAuth();
   const { setCompany } = useCompany();

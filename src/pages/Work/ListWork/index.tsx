@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../hooks/auth';
 import api from '../../../services/api';
 
 import NewButton from '../../../components/NewButton';
@@ -22,7 +21,6 @@ export interface IWork {
 }
 
 const ListWork: React.FC = () => {
-  const { user } = useAuth();
   const { colors } = useContext(ThemeContext);
 
   const [works, setWorks] = useState<IWork[]>([

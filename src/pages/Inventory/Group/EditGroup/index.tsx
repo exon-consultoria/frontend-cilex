@@ -27,7 +27,7 @@ const formSchemaGroup = Yup.object().shape({
 });
 
 const EditGroup: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();
@@ -59,7 +59,7 @@ const EditGroup: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error('Já existe um grupo cadastrado com o mesmo código!');
             }
@@ -76,26 +76,26 @@ const EditGroup: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Editar Grupo" />
+        <Header pageName='Editar Grupo' />
         {group && (
           <Main>
             <HeaderContent>
-              <div id="container-arrow">
-                <ButtonBack destinationBack="/inventory/group" />
+              <div id='container-arrow'>
+                <ButtonBack destinationBack='/inventory/group' />
               </div>
-              <div id="container-titles">
+              <div id='container-titles'>
                 <h2>{group.code}</h2>
                 <p>{group.description}</p>
               </div>
-              <div id="container-buttons-actions">
+              <div id='container-buttons-actions'>
                 <Button
-                  layoutColor="button-filled"
+                  layoutColor='button-filled'
                   onClick={() => setEditting(!editting)}
                 >
-                  <HiOutlinePencilAlt size={24} color="#fefefe" />
+                  <HiOutlinePencilAlt size={24} color='#fefefe' />
                 </Button>
                 <Button
-                  layoutColor="button-outline"
+                  layoutColor='button-outline'
                   onClick={() => setShowModalDelete(true)}
                 >
                   <HiOutlineTrash size={24} color={colors.main} />
@@ -114,11 +114,11 @@ const EditGroup: React.FC = () => {
               >
                 {({ handleChange, touched, values, errors, handleSubmit }) => (
                   <FormCustom onSubmit={handleSubmit}>
-                    <div id="align-inputs">
+                    <div id='align-inputs'>
                       <InputFormik
-                        name="code"
-                        type="text"
-                        placeholder="Código"
+                        name='code'
+                        type='text'
+                        placeholder='Código'
                         value={values.code}
                         onChange={handleChange('code')}
                         messageError={
@@ -127,9 +127,9 @@ const EditGroup: React.FC = () => {
                         maxLength={6}
                       />
                       <InputFormik
-                        name="description"
-                        type="text"
-                        placeholder="Descrição"
+                        name='description'
+                        type='text'
+                        placeholder='Descrição'
                         value={values.description}
                         onChange={handleChange('description')}
                         messageError={
@@ -139,8 +139,8 @@ const EditGroup: React.FC = () => {
                         }
                       />
                     </div>
-                    <div id="align-button-save">
-                      <Button layoutColor="button-green" type="submit">
+                    <div id='align-button-save'>
+                      <Button layoutColor='button-green' type='submit'>
                         <FiSave size={24} />
                         <span>Salvar</span>
                       </Button>

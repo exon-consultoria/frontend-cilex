@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import { FiSave } from 'react-icons/fi';
 import { HiOutlinePencilAlt, HiOutlineTrash } from 'react-icons/hi';
 import { toast } from 'react-toastify';
@@ -47,7 +47,7 @@ interface SelectFields {
 }
 
 const EditUserGroup: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id }: any = useParams();
   const { colors } = useContext(ThemeContext);
 
@@ -137,7 +137,6 @@ const EditUserGroup: React.FC = () => {
   const formSchemaUserGroupEdit = Yup.object().shape({
     code: Yup.string(),
     description: Yup.string(),
-    // eslint-disable-next-line react/forbid-prop-types
     modules: Yup.array(),
   });
 
@@ -157,7 +156,7 @@ const EditUserGroup: React.FC = () => {
 
         if (
           dataError.message ===
-          "There's already an entity registered with the same code"
+          'There\'s already an entity registered with the same code'
         ) {
           toast.error(
             'Já existe um grupo de usuários cadastrado com o mesmo código!',

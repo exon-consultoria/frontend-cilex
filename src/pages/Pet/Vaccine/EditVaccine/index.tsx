@@ -20,7 +20,7 @@ import ModalDelete from '../../../../components/ModalDelete';
 import { Container, Main, HeaderContent, FormCustom } from './styles';
 
 const EditVaccine: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id }: any = useParams();
   const { colors } = useContext(ThemeContext);
   const { deleteDataFromModule } = useCrudModules();
@@ -52,7 +52,7 @@ const EditVaccine: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma vacina cadastrada com o mesmo código!',

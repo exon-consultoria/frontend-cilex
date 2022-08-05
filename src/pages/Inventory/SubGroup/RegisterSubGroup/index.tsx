@@ -26,7 +26,7 @@ const formSchemaSubGroup = Yup.object().shape({
 });
 
 const RegisterSubGroup: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [groups, setGroups] = useState<IGroup[]>([]);
 
@@ -55,7 +55,7 @@ const RegisterSubGroup: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um sub-grupo cadastrado com o mesmo código!',

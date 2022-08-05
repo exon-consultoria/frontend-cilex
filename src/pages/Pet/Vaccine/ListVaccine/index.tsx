@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../../hooks/auth';
 import api from '../../../../services/api';
 import { IVaccine } from '../../../../types/pet/vaccine';
 
@@ -16,7 +15,6 @@ import EmptyData from '../../../../components/EmptyData';
 import { Container, Main } from './styles';
 
 const ListVaccine: React.FC = () => {
-  const { user } = useAuth();
   const { colors } = useContext(ThemeContext);
 
   const [vaccines, setVaccines] = useState<IVaccine[]>([]);

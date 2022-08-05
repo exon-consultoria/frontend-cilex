@@ -27,7 +27,7 @@ const formSchemaFamily = Yup.object().shape({
 });
 
 const EditFamily: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
   const { id }: any = useParams();
   const { deleteDataFromModule } = useCrudModules();
@@ -59,7 +59,7 @@ const EditFamily: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma família cadastrada com o mesmo código!',

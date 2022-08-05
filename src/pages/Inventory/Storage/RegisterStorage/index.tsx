@@ -23,7 +23,7 @@ const formSchemaStorage = Yup.object().shape({
 });
 
 const RegisterStorage: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterStorage) => {
@@ -43,7 +43,7 @@ const RegisterStorage: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe um estoque cadastrado com o mesmo código!',

@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { convertDate } from '../../utils/convertDate'
 import { toast } from 'react-toastify';
 import api from '../../services/api';
@@ -67,12 +67,12 @@ export const scheduleController = () => {
         const dateFinal = convertDate(endDate);
 
         if(recurrence) {
-          let allDates: Date[] = []
-          let tempDate = new Date(dateInitial.getTime());
+          const allDates: Date[] = []
+          const tempDate = new Date(dateInitial.getTime());
           
           while(tempDate <= dateFinal){
             allDates.push(new Date(tempDate));
-            tempDate.setDate(tempDate.getDate() + 1);
+            tempDate.setDate(tempDate.getDate() + 1);
           }
           const notUndefined = (anyValue:any) => typeof anyValue !== 'undefined' 
 
@@ -201,8 +201,8 @@ export const scheduleController = () => {
     const dateFinal = convertDate(endDate);
 
     if(recurrence) {
-      let allDates: Date[] = []
-      let tempDate = new Date(dateInitial.getTime());
+      const allDates: Date[] = []
+      const tempDate = new Date(dateInitial.getTime());
           
       while(tempDate <= dateFinal) {
         allDates.push(new Date(tempDate));

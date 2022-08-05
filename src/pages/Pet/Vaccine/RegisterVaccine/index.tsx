@@ -16,7 +16,7 @@ import ButtonBack from '../../../../components/ButtonBack';
 import { Container, Main, FormCustom } from './styles';
 
 const RegisterVaccine: React.FC = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const formSchemaVaccine = Yup.object().shape({
     code: Yup.string().required('Código Obrigatório'),
@@ -42,7 +42,7 @@ const RegisterVaccine: React.FC = () => {
 
             if (
               dataError.message ===
-              "There's already an entity registered with the same code"
+              'There\'s already an entity registered with the same code'
             ) {
               toast.error(
                 'Já existe uma Vacina cadastrado com o mesmo código!',
