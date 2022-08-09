@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { convertDate } from '../../utils/convertDate'
 import { toast } from 'react-toastify';
 import api from '../../services/api';
-import { Compromise,Works,Pets,RegisterCompromiseForm,EditForm } from './schedule.types'
+import { Compromise,Works,Pets,RegisterCompromiseForm } from './schedule.types'
 
 export const scheduleController = () => {
   const [compromises, setCompromises] = useState<Compromise[]>([]);
@@ -59,7 +59,7 @@ export const scheduleController = () => {
   };
 
   const handleSubmitForm = useCallback(
-    async (data: RegisterCompromiseForm) => {
+    async ({compromise,data}:RegisterCompromiseForm) => {
       try {
         const { date, recurrence, hour, pet_id, work_id,dayInWeek ,endDate} = data;
 
@@ -91,6 +91,25 @@ export const scheduleController = () => {
             }
           }).filter(notUndefined)
 
+          if(compromise) {
+            return api.put(`/appointments/${compromise.id}`, {
+              date: compromise.date,
+              hour: compromise.hour,
+              work_id: compromise.work.id,
+              pet_id: compromise.pet.id,
+              done: true,
+            })
+            .then(() => {
+              api.post('/appointments/many', allAppointments).then(() => {
+                toast.success('Compromisso cadastrado com sucesso!');
+                handleClickDay(dayClicked);
+                setModalVisible(false);
+              })
+              .catch(() => {
+                toast.error('Criação do compromisso ocorreu um erro!');
+              });
+            })
+          }
           return api.post('/appointments/many', allAppointments)
             .then(() => {
               toast.success('Compromisso cadastrado com sucesso!');
@@ -100,22 +119,23 @@ export const scheduleController = () => {
             .catch(() => {
               toast.error('Criação do compromisso ocorreu um erro!');
             });
+        }else {
+          api.post('/appointments', {
+           date: dateInitial.toLocaleDateString('pt-BR'),
+           hour,
+           pet_id,
+           work_id,
+           done: false,
+           recurrence
+          }).then(() => {
+           toast.success('Compromisso cadastrado com sucesso!');
+           setModalVisible(false);
+           handleClickDay(dayClicked);
+          })
+         .catch(() => {
+           toast.error('Criação do compromisso ocorreu um erro!');
+         });
         }
-         api.post('/appointments', {
-          date: dateInitial.toLocaleDateString('pt-BR'),
-          hour,
-          pet_id,
-          work_id,
-          done: false,
-          recurrence
-         }).then(() => {
-          toast.success('Compromisso cadastrado com sucesso!');
-          setModalVisible(false);
-          handleClickDay(dayClicked);
-         })
-        .catch(() => {
-          toast.error('Criação do compromisso ocorreu um erro!');
-        });
       } catch (err) {
         toast.error('Ocorreu um erro no registro do Compromisso');
       }
@@ -194,74 +214,6 @@ export const scheduleController = () => {
     setModalVisible(true);
   };
 
-  const handleSubmitEditForm = useCallback((compromise:Compromise, props: EditForm) => {
-    const { date, recurrence, hour, pet_id, work_id,dayInWeek ,endDate} = props;
-    
-    const dateInitial = convertDate(date);
-    const dateFinal = convertDate(endDate);
-
-    if(recurrence) {
-      const allDates: Date[] = []
-      const tempDate = new Date(dateInitial.getTime());
-          
-      while(tempDate <= dateFinal) {
-        allDates.push(new Date(tempDate));
-        tempDate.setDate(tempDate.getDate() + 1);
-      }
-      const notUndefined = (anyValue:any) => typeof anyValue !== 'undefined' 
-
-      const allAppointments = allDates.map((date) => {
-        const dayWeek = date.getDay()
-        const hasSchedule = dayInWeek.find(day => Number(day) === dayWeek)
-        if(hasSchedule) {
-          return ({
-            date: date.toLocaleDateString('pt-BR'),
-            hour,
-            pet_id,
-            work_id,
-            done: false,
-            recurrence
-          })
-        }
-      }).filter(notUndefined)
-      return api.put(`/appointments/${compromise.id}`, {
-          date: compromise.date,
-          hour: compromise.hour,
-          work_id: compromise.work.id,
-          pet_id: compromise.pet.id,
-          done: true,
-      })
-      .then(() => {
-        api.post('/appointments/many', allAppointments).then(() => {
-          toast.success('Compromisso cadastrado com sucesso!');
-          handleClickDay(dayClicked);
-          setModalVisible(false);
-        })
-        .catch(() => {
-          toast.error('Criação do compromisso ocorreu um erro!');
-        });
-      })
-    }
-    else {
-      api
-        .put(`/appointments/${compromise.id}`, {
-          date: compromise.date,
-          hour: compromise.hour,
-          work_id: compromise.work.id,
-          pet_id: compromise.pet.id,
-          done: true,
-        })
-        .then(() => {
-          toast.success('Serviço concluído!');
-          handleClickDay(compromise.date);
-          setModalVisible(false);
-        })
-        .catch(() => {
-          toast.error('Erro na conclusão do Serviço!');
-        });
-    }
-  },[dayClicked]);
-
   return {
     states: {
       compromises,
@@ -280,7 +232,6 @@ export const scheduleController = () => {
       handleDeleteCompromise,
       handleFinishedCompromise,
       setType,
-      handleSubmitEditForm
     }
   }
 }

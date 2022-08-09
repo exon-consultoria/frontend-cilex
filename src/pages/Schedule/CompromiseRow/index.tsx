@@ -44,7 +44,7 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
       setType,
       handleDeleteCompromise,
       setModalVisible,
-      handleSubmitEditForm
+      handleSubmitForm
     },
     states: {
       pets,
@@ -114,7 +114,7 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
               recurrence: compromise.recurrence,
               endDate: ''
             }}
-            onSubmit={(props) => handleSubmitEditForm(compromise,props)}
+            onSubmit={(props) => handleSubmitForm({compromise,data:props})}
           >
             {({ handleChange, touched, values, errors, handleSubmit }) => (
               <FormCustom onSubmit={handleSubmit}>

@@ -1,14 +1,3 @@
-export interface EditForm {
-  date: string;
-  hour: string;
-  pet_id: string;
-  work_id: string;
-  done: boolean;
-  dayInWeek: never[];
-  recurrence: string | undefined;
-  endDate: string;
-}
-
 export interface Compromise {
   id: string;
   date: string;
@@ -29,18 +18,24 @@ export interface Compromise {
     razao_social?: string;
     endereco: string;
   };
-  recurrence?: string;
+  recurrence?: boolean | undefined;
   recurrence_id?: string;
 }
 
-export interface RegisterCompromiseForm {
+export interface DataForm {
   date: string;
   hour: string;
   pet_id: string;
   work_id: string;
-  recurrence: boolean;
-  dayInWeek: string[],
-  endDate: string
+  done?: boolean;
+  dayInWeek: string[];
+  recurrence: boolean | undefined;
+  endDate: string;
+}
+
+export interface RegisterCompromiseForm {
+  compromise?: Compromise
+  data: DataForm
 }
 
 export interface Works {

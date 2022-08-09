@@ -93,7 +93,7 @@ const Schedule: React.FC = () => {
             endDate: ''
           }}
           validationSchema={formSchemaCompromise}
-          onSubmit={handleSubmitForm}
+          onSubmit={(props) => handleSubmitForm({compromise: undefined, data: props})}
         >
           {({ handleChange, touched, values, errors, handleSubmit }) => (
             <FormCustom onSubmit={handleSubmit}>
