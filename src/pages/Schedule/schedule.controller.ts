@@ -99,16 +99,16 @@ export const scheduleController = () => {
               pet_id: compromise.pet.id,
               done: true,
             })
-            .then(() => {
-              api.post('/appointments/many', allAppointments).then(() => {
-                toast.success('Compromisso cadastrado com sucesso!');
-                handleClickDay(dayClicked);
-                setModalVisible(false);
+              .then(() => {
+                api.post('/appointments/many', allAppointments).then(() => {
+                  toast.success('Compromisso cadastrado com sucesso!');
+                  handleClickDay(dayClicked);
+                  setModalVisible(false);
+                })
+                  .catch(() => {
+                    toast.error('Criação do compromisso ocorreu um erro!');
+                  });
               })
-              .catch(() => {
-                toast.error('Criação do compromisso ocorreu um erro!');
-              });
-            })
           }
           return api.post('/appointments/many', allAppointments)
             .then(() => {
@@ -121,20 +121,20 @@ export const scheduleController = () => {
             });
         }else {
           api.post('/appointments', {
-           date: dateInitial.toLocaleDateString('pt-BR'),
-           hour,
-           pet_id,
-           work_id,
-           done: false,
-           recurrence
+            date: dateInitial.toLocaleDateString('pt-BR'),
+            hour,
+            pet_id,
+            work_id,
+            done: false,
+            recurrence
           }).then(() => {
-           toast.success('Compromisso cadastrado com sucesso!');
-           setModalVisible(false);
-           handleClickDay(dayClicked);
+            toast.success('Compromisso cadastrado com sucesso!');
+            setModalVisible(false);
+            handleClickDay(dayClicked);
           })
-         .catch(() => {
-           toast.error('Criação do compromisso ocorreu um erro!');
-         });
+            .catch(() => {
+              toast.error('Criação do compromisso ocorreu um erro!');
+            });
         }
       } catch (err) {
         toast.error('Ocorreu um erro no registro do Compromisso');
@@ -169,25 +169,25 @@ export const scheduleController = () => {
       const ids = getByRecurrence.map((recurrence) => recurrence.id).toString()
 
       api
-      .delete(`/appointments/many/${ids}`)
-      .then(() => {
-        toast.success('Todos os compromissos foram deletados.');
-      })
-      .catch(() => {
-        toast.error('Erro na exclusão dos Compromissos.');
-      });
+        .delete(`/appointments/many/${ids}`)
+        .then(() => {
+          toast.success('Todos os compromissos foram deletados.');
+        })
+        .catch(() => {
+          toast.error('Erro na exclusão dos Compromissos.');
+        });
     }
 
     if(selectedCompromise.recurrence && type === 'since') {
       const formattedDate = selectedCompromise.date.replaceAll('/','-')
       api
-      .delete(`/appointments/appointment/${formattedDate}`)
-      .then(() => {
-        toast.success(`Compromissos após ${selectedCompromise.date} foram deletados.`);
-      })
-      .catch(() => {
-        toast.error('Erro na exclusão dos Compromissos.');
-      });
+        .delete(`/appointments/appointment/${formattedDate}`)
+        .then(() => {
+          toast.success(`Compromissos após ${selectedCompromise.date} foram deletados.`);
+        })
+        .catch(() => {
+          toast.error('Erro na exclusão dos Compromissos.');
+        });
     }
 
     if(type === 'one') {
