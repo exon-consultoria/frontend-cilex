@@ -171,36 +171,36 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
                 </Select>
                 {!compromise.recurrence && (
                   <>
-                  <ContainerInputDate>
-                  <p>Recorrência? </p>
-                  <input
-                    type="checkbox"
-                    name="recurrence"
-                    onChange={handleChange('recurrence')}
-                  />
-                </ContainerInputDate>
-                <ContainerInputDate>
-                  {values.recurrence && (
-                    stringDaysWeek.map((dayWeek,index) => (
-                      <Day>
-                        <p>{dayWeek}</p>
-                        <input type='checkbox' name='dayInWeek' value={index}  onChange={handleChange('dayInWeek')}/>
-                      </Day>
-                    ))
-                  )}
-                </ContainerInputDate>
-                {values.recurrence && (
-                <ContainerInputDate>
-                  <p>Data Final: </p>
-                  <input
-                    type="date"
-                    name="endDate"
-                    value={values.endDate}
-                    onChange={handleChange('endDate')}
-                  />
-                </ContainerInputDate>
-              )}
-              </>
+                    <ContainerInputDate>
+                      <p>Recorrência? </p>
+                      <input
+                        type="checkbox"
+                        name="recurrence"
+                        onChange={handleChange('recurrence')}
+                      />
+                    </ContainerInputDate>
+                    <ContainerInputDate>
+                      {values.recurrence && (
+                        stringDaysWeek.map((dayWeek,index) => (
+                          <Day>
+                            <p>{dayWeek}</p>
+                            <input type='checkbox' name='dayInWeek' value={index}  onChange={handleChange('dayInWeek')}/>
+                          </Day>
+                        ))
+                      )}
+                    </ContainerInputDate>
+                    {values.recurrence && (
+                      <ContainerInputDate>
+                        <p>Data Final: </p>
+                        <input
+                          type="date"
+                          name="endDate"
+                          value={values.endDate}
+                          onChange={handleChange('endDate')}
+                        />
+                      </ContainerInputDate>
+                    )}
+                  </>
                 )}
                 <Button layoutColor="button-green" type="submit">
                   <FiSave size={24} />
@@ -216,25 +216,25 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
       {modalDeleteVisible && (
         <Modal visible={modalDeleteVisible} setVisible={setModalDeleteVisible}>
         
-        <DeleteContainer>
-          <DeleteOption>
-            <input type="radio" id="deleteOne" name="delete" value='one' onChange={(e) => setType(e.target.value)} />
-            <label htmlFor="deleteOne">Deseja excluir apenas este evento ?</label>
-          </DeleteOption>
-        {compromise.recurrence && (
-          <>
-          <DeleteOption >
-            <input type="radio" id="deleteSince" name="delete" value='since' onChange={(e) => setType(e.target.value)} />
-            <label htmlFor="deleteSince">Deseja excluir deste evento para frente ?</label>
-          </DeleteOption>
+          <DeleteContainer>
+            <DeleteOption>
+              <input type="radio" id="deleteOne" name="delete" value='one' onChange={(e) => setType(e.target.value)} />
+              <label htmlFor="deleteOne">Deseja excluir apenas este evento ?</label>
+            </DeleteOption>
+            {compromise.recurrence && (
+              <>
+                <DeleteOption >
+                  <input type="radio" id="deleteSince" name="delete" value='since' onChange={(e) => setType(e.target.value)} />
+                  <label htmlFor="deleteSince">Deseja excluir deste evento para frente ?</label>
+                </DeleteOption>
 
-          <DeleteOption>
-            <input type="radio" id="deleteAll" name="delete" value='all' onChange={(e) => setType(e.target.value)}/>
-            <label htmlFor="deleteAll">Deseja excluir todos os eventos ?</label>
-          </DeleteOption>
-          </>
-        )}
-        </DeleteContainer>
+                <DeleteOption>
+                  <input type="radio" id="deleteAll" name="delete" value='all' onChange={(e) => setType(e.target.value)}/>
+                  <label htmlFor="deleteAll">Deseja excluir todos os eventos ?</label>
+                </DeleteOption>
+              </>
+            )}
+          </DeleteContainer>
           <ContainerButtonsModal>
             <Button
               layoutColor="button-outline"

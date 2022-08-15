@@ -70,11 +70,11 @@ export const Module = styled.div<ModuleProps>`
     background: ${props => props.theme.colors.main};
 
     ${props =>
-      props.selected
-        ? css`
+    props.selected
+      ? css`
             border: 5px solid ${props.theme.colors.green};
           `
-        : css`
+      : css`
             border: 2px solid ${props.theme.colors.mainHover};
           `}
 

@@ -34,22 +34,22 @@ const formSchemaCompromise = Yup.object().shape({
 });
 
 const Schedule: React.FC = () => {
- const {
-  actions:{
-    handleClickDay,
-    handleChangeServiceSelected,
-    handleSubmitForm,
-    setModalVisible
- },
-  states: {
-    compromises,
-    dayClicked,
-    modalVisible,
-    pets,
-    serviceSelected,
-    works
-  }
-} = scheduleController()
+  const {
+    actions:{
+      handleClickDay,
+      handleChangeServiceSelected,
+      handleSubmitForm,
+      setModalVisible
+    },
+    states: {
+      compromises,
+      dayClicked,
+      modalVisible,
+      pets,
+      serviceSelected,
+      works
+    }
+  } = scheduleController()
 
   return (
     <Container>
@@ -144,7 +144,7 @@ const Schedule: React.FC = () => {
                   </option>
                 ))}
               </Select>
-               <ContainerInputDate>
+              <ContainerInputDate>
                 <p>Recorrência? </p>
                 <input
                   type="checkbox"
@@ -152,26 +152,26 @@ const Schedule: React.FC = () => {
                   onChange={handleChange('recurrence')}
                 />
               </ContainerInputDate>
-                {values.recurrence && (
-                  <ContainerInputDate>
-                      {stringDaysWeek.map((dayWeek,index) => (
-                        <Day>
-                          <p>{dayWeek}</p>
-                          <input type='checkbox' name='dayInWeek' value={index}  onChange={handleChange('dayInWeek')}/>
-                        </Day>
-                      )) }
-                  </ContainerInputDate>
-                )}
               {values.recurrence && (
-               <ContainerInputDate>
-                <p>Data Final: </p>
-                <input
-                  type="date"
-                  name="endDate"
-                  value={values.endDate}
-                  onChange={handleChange('endDate')}
-                />
-              </ContainerInputDate>
+                <ContainerInputDate>
+                  {stringDaysWeek.map((dayWeek,index) => (
+                    <Day>
+                      <p>{dayWeek}</p>
+                      <input type='checkbox' name='dayInWeek' value={index}  onChange={handleChange('dayInWeek')}/>
+                    </Day>
+                  )) }
+                </ContainerInputDate>
+              )}
+              {values.recurrence && (
+                <ContainerInputDate>
+                  <p>Data Final: </p>
+                  <input
+                    type="date"
+                    name="endDate"
+                    value={values.endDate}
+                    onChange={handleChange('endDate')}
+                  />
+                </ContainerInputDate>
               )}
               <Button layoutColor="button-green" type="submit">
                 <FiSave size={24} />

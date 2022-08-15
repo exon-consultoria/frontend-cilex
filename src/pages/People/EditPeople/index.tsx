@@ -182,7 +182,7 @@ const EditPeople: React.FC = () => {
     // Jurídica
     cnpj: isPhysicalPerson
       ? Yup.string()
-      : Yup.string().required('CNPJ obrigatório').min(18).max(18),
+      : Yup.string().required('CNPJ obrigatório').min(14).max(18),
     razao_social: isPhysicalPerson
       ? Yup.string()
       : Yup.string().required('Razão Social obrigatório'),
@@ -191,7 +191,7 @@ const EditPeople: React.FC = () => {
       : Yup.string().required('Nome Fantasia obrigatório'),
 
     // Fisica
-    cpf: isPhysicalPerson ? Yup.string().min(14).max(14) : Yup.string(),
+    cpf: isPhysicalPerson ? Yup.string().min(11).max(11) : Yup.string(),
     nome: isPhysicalPerson
       ? Yup.string().required('Nome obrigatório')
       : Yup.string(),

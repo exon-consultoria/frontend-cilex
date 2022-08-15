@@ -43,13 +43,13 @@ export const Container = styled.div<ContainerStatusProps>`
     margin-right: 16px;
 
     ${props =>
-      props.isFocus &&
+    props.isFocus &&
       css`
         color: ${props.theme.colors.main};
       `}
 
     ${props =>
-      props.isError &&
+    props.isError &&
       css`
         color: #c53030;
       `}
