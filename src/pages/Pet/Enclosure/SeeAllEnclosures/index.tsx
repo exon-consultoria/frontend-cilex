@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DefaultLayout from '../../../../components/DefaultLayout';
+import {DefaultLayout} from 'components';
 
 import { Main } from './styles';
 

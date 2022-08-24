@@ -12,7 +12,7 @@ interface InputDefaultProps extends InputHTMLAttributes<HTMLInputElement> {
   mask?: (string | RegExp)[];
 }
 
-const InputDefault: React.FC<InputDefaultProps> = ({
+export const InputDefault: React.FC<InputDefaultProps> = ({
   icon: Icon,
   messageError,
   mask,
@@ -47,4 +47,3 @@ const InputDefault: React.FC<InputDefaultProps> = ({
     </Container>
   );
 };
-export default InputDefault;

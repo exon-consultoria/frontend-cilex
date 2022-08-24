@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from '../Header';
+import { Header } from '../Header';
 
 import { Container, Main } from './styles';
 
@@ -9,7 +9,7 @@ interface DefaultLayoutProps {
   children: React.ReactNode;
 }
 
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({
+export const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   pageNameHeader,
   children,
 }) => {
@@ -21,4 +21,3 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   );
 };
 
-export default DefaultLayout;

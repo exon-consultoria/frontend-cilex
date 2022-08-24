@@ -1,9 +1,9 @@
 import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  useContext,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+    useContext,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -13,35 +13,30 @@ import { HiOutlinePencilAlt, HiOutlineTrash } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../../services/api';
-import camera from '../../../../assets/camera.svg';
-import { useCrudModules } from '../../../../hooks/useCrudModules';
-import { IRegisterProduct } from '../../../../types/storage/product';
-import { IStorage } from '../../../../types/storage/storage';
-import { IType } from '../../../../types/storage/type';
-import { IGroup } from '../../../../types/storage/group';
-import { IFamily } from '../../../../types/storage/family';
-import { IUnitMeasure } from '../../../../types/storage/unitMeasure';
-import { IApplication } from '../../../../types/storage/application';
-import { IDimension } from '../../../../types/storage/dimension';
-import { ISubGroup } from '../../../../types/storage/subGroup';
-import { ISubFamily } from '../../../../types/storage/subFamily';
+import api from 'services/api';
+import camera from 'assets/camera.svg';
+import { useCrudModules } from 'hooks/useCrudModules';
+import { IRegisterProduct } from 'types/storage/product';
+import { IStorage } from 'types/storage/storage';
+import { IType } from 'types/storage/type';
+import { IGroup } from 'types/storage/group';
+import { IFamily } from 'types/storage/family';
+import { IUnitMeasure } from 'types/storage/unitMeasure';
+import { IApplication } from 'types/storage/application';
+import { IDimension } from 'types/storage/dimension';
+import { ISubGroup } from 'types/storage/subGroup';
+import { ISubFamily } from 'types/storage/subFamily';
 
-import Header from '../../../../components/Header';
-import Button from '../../../../components/Button';
-import InputFormik from '../../../../components/InputFormik';
-import ButtonBack from '../../../../components/ButtonBack';
-import ModalDelete from '../../../../components/ModalDelete';
-import Select from '../../../../components/Select';
+import { Header, Button, InputFormik, ButtonBack, ModalDelete, Select} from 'components'
 
 import {
-  Container,
-  Main,
-  HeaderContent,
-  ContainerProductData,
-  InfoCard,
-  FormCustom,
-  ContainerInputFile,
+    Container,
+    Main,
+    HeaderContent,
+    ContainerProductData,
+    InfoCard,
+    FormCustom,
+    ContainerInputFile,
 } from './styles';
 
 const formSchemaProduct = Yup.object().shape({

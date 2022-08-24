@@ -9,7 +9,7 @@ interface ModuleCardProps {
   description: string;
 }
 
-const ModuleCard: React.FC<ModuleCardProps> = ({
+export const ModuleCard: React.FC<ModuleCardProps> = ({
   to,
   classIcon,
   title,
@@ -24,4 +24,3 @@ const ModuleCard: React.FC<ModuleCardProps> = ({
   );
 };
 
-export default ModuleCard;

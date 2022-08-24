@@ -1,9 +1,6 @@
 import React from 'react';
 
-import ButtonBack from '../../components/ButtonBack';
-import DefaultTable from '../../components/DefaultTable';
-import ChangeCompany from '../../components/ChangeCompany';
-import Header from '../../components/Header';
+import { ButtonBack, DefaultTable, ChangeCompany, Header } from 'components'
 
 import { Container, Main } from './styles';
 

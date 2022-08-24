@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Header from '../../components/Header';
-import ButtonBack from '../../components/ButtonBack';
-import ModuleCard from '../../components/ModuleCard';
+import { Header, ButtonBack, ModuleCard } from 'components'
 
 import { Container, Main } from './styles';
 

@@ -7,27 +7,23 @@ import { FiSave } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../services/api';
-import { maskPhone, maskCPF, maskCEP, maskCNPJ } from '../../../utils/masks';
+import api from 'services/api';
+import { maskPhone, maskCPF, maskCEP, maskCNPJ } from 'utils/masks';
 import {
-  unformatTel,
-  unformatCPF,
-  unformatCEP,
-  unformatCNPJ,
-} from '../../../utils/unformat';
+    unformatTel,
+    unformatCPF,
+    unformatCEP,
+    unformatCNPJ,
+} from 'utils/unformat';
 
-import Button from '../../../components/Button';
-import Header from '../../../components/Header';
-import InputFormik from '../../../components/InputFormik';
-import ButtonBack from '../../../components/ButtonBack';
-import Checkbox from '../../../components/Checkbox';
+import { Button, Header, InputFormik, ButtonBack, Checkbox} from 'components';
 
 import {
-  CheckboxContainer,
-  Container,
-  FormCustom,
-  Main,
-  Select,
+    CheckboxContainer,
+    Container,
+    FormCustom,
+    Main,
+    Select,
 } from './styles';
 
 interface RegisterPeopleForm {

@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 
-import api from '../../../services/api';
+import api from 'services/api';
 
-import DefaultTable from '../../../components/DefaultTable';
-import Header from '../../../components/Header';
-import ButtonBack from '../../../components/ButtonBack';
-import NewButton from '../../../components/NewButton';
-import EmptyData from '../../../components/EmptyData';
+import { NewButton, DefaultTable, Header, ButtonBack, EmptyData} from 'components';
+
 
 import { Container, Main } from './styles';
 

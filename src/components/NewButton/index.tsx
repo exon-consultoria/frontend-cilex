@@ -6,10 +6,9 @@ type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   to: string;
 };
 
-const NewButton: React.FC<LinkProps> = ({ children, to, ...rest }) => (
+export const NewButton: React.FC<LinkProps> = ({ children, to, ...rest }) => (
   <Container to={to} type="button" {...rest}>
     {children}
   </Container>
 );
 
-export default NewButton;

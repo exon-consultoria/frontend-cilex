@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import DefaultTable from '../../../../components/DefaultTable';
-import ButtonBack from '../../../../components/ButtonBack';
-import EmptyData from '../../../../components/EmptyData';
-import DefaultLayout from '../../../../components/DefaultLayout';
-import api from '../../../../services/api';
+import { DefaultTable, ButtonBack, EmptyData, DefaultLayout } from 'components'
+
+import api from 'services/api';
 
 interface ConsultStorageParams {
   id: string;

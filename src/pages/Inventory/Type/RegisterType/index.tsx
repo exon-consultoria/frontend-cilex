@@ -7,13 +7,11 @@ import { FiSave } from 'react-icons/fi';
 import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../../services/api';
-import { IRegisterType } from '../../../../types/storage/type';
+import api from 'services/api';
+import { IRegisterType } from 'types/storage/type';
 
-import Button from '../../../../components/Button';
-import Header from '../../../../components/Header';
-import InputFormik from '../../../../components/InputFormik';
-import ButtonBack from '../../../../components/ButtonBack';
+import { Button, Header, InputFormik, ButtonBack } from 'components'
+
 
 import { Container, Main, FormCustom } from './styles';
 

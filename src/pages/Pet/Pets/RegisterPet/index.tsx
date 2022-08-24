@@ -1,9 +1,9 @@
 import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useContext,
-  useMemo,
+    useCallback,
+    useEffect,
+    useState,
+    useContext,
+    useMemo,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field } from 'formik';
@@ -13,25 +13,20 @@ import { toast } from 'react-toastify';
 import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../../services/api';
-import camera from '../../../../assets/camera.svg';
-import { IVaccine } from '../../../../types/pet/vaccine';
-import { IEnclosure } from '../../../../types/pet/enclosure';
+import api from 'services/api';
+import camera from 'assets/camera.svg';
+import { IVaccine } from 'types/pet/vaccine';
+import { IEnclosure } from 'types/pet/enclosure';
 
-import Header from '../../../../components/Header';
-import ButtonBack from '../../../../components/ButtonBack';
-import InputFormik from '../../../../components/InputFormik';
-import Button from '../../../../components/Button';
-import Select from '../../../../components/Select';
-import CustomSelect from '../../../../components/CustomSelect';
+import { Header, ButtonBack, InputFormik, Button, Select, CustomSelect} from 'components';
 
 import {
-  Container,
-  Main,
-  FormCustom,
-  ContainerSwitch,
-  ContainerInputFile,
-  ContainerInputDate,
+    Container,
+    Main,
+    FormCustom,
+    ContainerSwitch,
+    ContainerInputFile,
+    ContainerInputDate,
 } from './styles';
 
 interface VaccinesMultiSelect {

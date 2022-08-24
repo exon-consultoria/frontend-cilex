@@ -7,14 +7,12 @@ import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import getValidationErrors from '../../utils/getValidationErrors';
+import getValidationErrors from 'utils/getValidationErrors';
 
-import InputFormik from '../../components/InputFormik';
-import Button from '../../components/Button';
+import { InputFormik, Button } from 'components'
 
 import { Container, AnimationContainer, Content } from './styles';
-import api from '../../services/api';
-
+import api from 'services/api';
 interface ForgotPasswordFormData {
   email: string;
 }

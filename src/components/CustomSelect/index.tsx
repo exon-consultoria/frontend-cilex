@@ -51,4 +51,3 @@ export const CustomSelect = ({
   );
 };
 
-export default CustomSelect;

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import Header from '../../components/Header';
-import ModuleCard from '../../components/ModuleCard';
-import { useAuth } from '../../hooks/auth';
-import api from '../../services/api';
+import { Header, ModuleCard} from 'components';
+import { useAuth } from 'hooks/auth';
+import api from 'services/api';
 
 import { Container, Main } from './styles';
 

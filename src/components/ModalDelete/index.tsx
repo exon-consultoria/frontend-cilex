@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { MdClose } from 'react-icons/md';
 import { ThemeContext } from 'styled-components';
 
-import Button from '../Button';
+import { Button} from '../Button';
 
 import { Background, Content } from './styles';
 
@@ -12,7 +12,7 @@ interface ModalDeleteProps {
   actionToDelete: () => void;
 }
 
-const ModalDelete: React.FC<ModalDeleteProps> = ({
+export const ModalDelete: React.FC<ModalDeleteProps> = ({
   visible,
   setVisible,
   actionToDelete,
@@ -41,4 +41,3 @@ const ModalDelete: React.FC<ModalDeleteProps> = ({
   ) : null;
 };
 
-export default ModalDelete;

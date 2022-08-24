@@ -13,7 +13,7 @@ interface InputFormikProps extends InputHTMLAttributes<HTMLInputElement> {
   mask?: (string | RegExp)[];
 }
 
-const InputFormik: React.FC<InputFormikProps> = ({
+export const InputFormik: React.FC<InputFormikProps> = ({
   icon: Icon,
   messageError,
   mask,
@@ -54,4 +54,3 @@ const InputFormik: React.FC<InputFormikProps> = ({
     </Container>
   );
 };
-export default InputFormik;

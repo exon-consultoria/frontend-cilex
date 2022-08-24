@@ -7,15 +7,11 @@ import { HiOutlinePencilAlt, HiOutlineTrash } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../../services/api';
-import { useCrudModules } from '../../../../hooks/useCrudModules';
-import { IRegisterFamily } from '../../../../types/storage/family';
+import api from 'services/api';
+import { useCrudModules } from 'hooks/useCrudModules';
+import { IRegisterFamily } from 'types/storage/family';
 
-import Header from '../../../../components/Header';
-import Button from '../../../../components/Button';
-import InputFormik from '../../../../components/InputFormik';
-import ButtonBack from '../../../../components/ButtonBack';
-import ModalDelete from '../../../../components/ModalDelete';
+import { Header, Button, InputFormik, ButtonBack, ModalDelete } from 'components'
 
 import { Container, Main, HeaderContent, FormCustom } from './styles';
 

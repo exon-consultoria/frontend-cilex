@@ -3,23 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { transparentize } from 'polished';
 import { toast } from 'react-toastify';
 
-import { useToggleTheme } from '../../hooks/useToggleTheme';
+import { useToggleTheme } from 'hooks/useToggleTheme';
+import { useCompany } from 'hooks/useCompany';
 
-import camera from '../../assets/camera.svg';
+import api from 'services/api';
 
-import Header from '../../components/Header';
-import Button from '../../components/Button';
-import ButtonBack from '../../components/ButtonBack';
+import camera from 'assets/camera.svg';
+import { Header, Button, ButtonBack } from 'components'
 
 import {
-  Container,
-  ContainerActions,
-  ContainerInputFile,
-  Main,
-  Section,
+    Container,
+    ContainerActions,
+    ContainerInputFile,
+    Main,
+    Section,
 } from './styles';
-import api from '../../services/api';
-import { useCompany } from '../../hooks/useCompany';
 
 const GeneralParams: React.FC = () => {
   const { theme, toggleTheme } = useToggleTheme();

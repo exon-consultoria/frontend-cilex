@@ -10,7 +10,7 @@ interface ModalProps {
   children: React.ReactNode
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
+export const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
   const { colors } = useContext(ThemeContext);
 
   return visible ? (
@@ -31,4 +31,3 @@ const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
   ) : null;
 };
 
-export default Modal;

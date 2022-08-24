@@ -6,20 +6,16 @@ import { toast } from 'react-toastify';
 import { FiSave } from 'react-icons/fi';
 import { BsUnlock } from 'react-icons/bs';
 
-import api from '../../../services/api';
+import api from 'services/api';
 
-import Header from '../../../components/Header';
-import InputFormik from '../../../components/InputFormik';
-import Button from '../../../components/Button';
-import ButtonBack from '../../../components/ButtonBack';
-import Checkbox from '../../../components/Checkbox';
+import { Header, Button, InputFormik, ButtonBack, Checkbox} from 'components';
 
 import {
-  Container,
-  Main,
-  FormCustom,
-  CheckboxContainer,
-  Select,
+    Container,
+    Main,
+    FormCustom,
+    CheckboxContainer,
+    Select,
 } from './styles';
 
 interface UserPending {

@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../services/api';
+import api from 'services/api';
 
-import Header from '../../../components/Header';
-import ButtonBack from '../../../components/ButtonBack';
-import DefaultTable from '../../../components/DefaultTable';
-import EmptyData from '../../../components/EmptyData';
+import { DefaultTable, Header, ButtonBack, EmptyData} from 'components';
+
 
 import { Container, Main } from './styles';
 

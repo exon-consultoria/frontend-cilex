@@ -5,38 +5,34 @@ import { Formik } from 'formik';
 import Switch from 'react-switch';
 import { FiSave } from 'react-icons/fi';
 import {
-  HiOutlinePencilAlt,
-  HiOutlineTrash,
-  HiOutlineUser,
+    HiOutlinePencilAlt,
+    HiOutlineTrash,
+    HiOutlineUser,
 } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../services/api';
-import { maskPhone, maskCPF, maskCEP, maskCNPJ } from '../../../utils/masks';
+import api from 'services/api';
+import { maskPhone, maskCPF, maskCEP, maskCNPJ } from 'utils/masks';
 import {
-  unformatTel,
-  unformatCPF,
-  unformatCEP,
-  unformatCNPJ,
-} from '../../../utils/unformat';
+    unformatTel,
+    unformatCPF,
+    unformatCEP,
+    unformatCNPJ,
+} from 'utils/unformat';
 
-import Header from '../../../components/Header';
-import Button from '../../../components/Button';
-import Checkbox from '../../../components/Checkbox';
-import InputFormik from '../../../components/InputFormik';
-import ButtonBack from '../../../components/ButtonBack';
-import ModalDelete from '../../../components/ModalDelete';
+import { Header, Button, Checkbox, InputFormik, ButtonBack, ModalDelete } from 'components';
+
 
 import {
-  Container,
-  Main,
-  InfoCard,
-  HeaderContent,
-  ContainerCompanyData,
-  Select,
-  FormCustom,
-  CheckboxContainer,
+    Container,
+    Main,
+    InfoCard,
+    HeaderContent,
+    ContainerCompanyData,
+    Select,
+    FormCustom,
+    CheckboxContainer,
 } from './styles';
 
 interface IRegisterForm {

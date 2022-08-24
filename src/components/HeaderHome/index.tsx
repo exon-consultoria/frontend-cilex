@@ -10,7 +10,7 @@ import { useToggleTheme } from '../../hooks/useToggleTheme';
 import { useAuth } from '../../hooks/auth';
 import { useCompany } from '../../hooks/useCompany';
 
-import Button from '../Button';
+import { Button } from '../Button';
 
 import { Container, Greetings } from './styles';
 
@@ -18,7 +18,7 @@ interface HeaderProps {
   message: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ message }) => {
+export const HeaderHome: React.FC<HeaderProps> = ({ message }) => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
   const { toggleTheme } = useToggleTheme();
@@ -71,4 +71,3 @@ const Header: React.FC<HeaderProps> = ({ message }) => {
   );
 };
 
-export default Header;

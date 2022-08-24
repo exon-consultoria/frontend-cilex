@@ -3,9 +3,9 @@ import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { FiHome, FiPower } from 'react-icons/fi';
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from 'hooks/auth';
 
-import Button from '../../components/Button';
+import { Button } from 'components/Button';
 
 import { Container, Header, Greetings } from './styles';
 

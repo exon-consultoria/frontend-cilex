@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { convertDate } from '../../utils/convertDate'
+import { convertDate } from 'utils/convertDate'
 import { toast } from 'react-toastify';
-import api from '../../services/api';
+import api from 'services/api';
 import { Compromise,Works,Pets,RegisterCompromiseForm } from './schedule.types'
 
 export const scheduleController = () => {

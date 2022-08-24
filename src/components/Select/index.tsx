@@ -7,7 +7,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   messageError?: string;
 }
 
-const Select: React.FC<SelectProps> = ({
+export const Select: React.FC<SelectProps> = ({
   messageError = '',
   children,
   ...rest
@@ -33,4 +33,3 @@ const Select: React.FC<SelectProps> = ({
     </Container>
   );
 };
-export default Select;

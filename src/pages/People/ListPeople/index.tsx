@@ -4,23 +4,16 @@ import { FiEye, FiShare2 } from 'react-icons/fi';
 import { Checkbox } from '@material-ui/core';
 import { ThemeContext } from 'styled-components';
 
-import { useAuth } from '../../../hooks/auth';
-import api from '../../../services/api';
+import { useAuth } from 'hooks/auth';
+import api from 'services/api';
 
-import Button from '../../../components/Button';
-import ButtonBack from '../../../components/ButtonBack';
-import NewButton from '../../../components/NewButton';
-import DefaultTable from '../../../components/DefaultTable';
-import ChangeCompany from '../../../components/ChangeCompany';
-import Modal from '../../../components/Modal';
-import Header from '../../../components/Header';
-import EmptyData from '../../../components/EmptyData';
+import { Button, ButtonBack, NewButton, DefaultTable, ChangeCompany, Modal, Header, EmptyData } from 'components';
 
 import {
-  Container,
-  Main,
-  ContainerContentModalShare,
-  ContentModalShare,
+    Container,
+    Main,
+    ContainerContentModalShare,
+    ContentModalShare,
 } from './styles';
 
 export interface Person {

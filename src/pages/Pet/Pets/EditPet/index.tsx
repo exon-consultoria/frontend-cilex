@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useContext,
-  useMemo,
+    useCallback,
+    useEffect,
+    useState,
+    useContext,
+    useMemo,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -15,30 +15,24 @@ import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 import Switch from 'react-switch';
 
-import api from '../../../../services/api';
-import camera from '../../../../assets/camera.svg';
-import { useCrudModules } from '../../../../hooks/useCrudModules';
-import { IVaccine } from '../../../../types/pet/vaccine';
-import { IEnclosure } from '../../../../types/pet/enclosure';
+import api from 'services/api';
+import camera from 'assets/camera.svg';
+import { useCrudModules } from 'hooks/useCrudModules';
+import { IVaccine } from 'types/pet/vaccine';
+import { IEnclosure } from 'types/pet/enclosure';
 
-import Header from '../../../../components/Header';
-import Button from '../../../../components/Button';
-import InputFormik from '../../../../components/InputFormik';
-import ButtonBack from '../../../../components/ButtonBack';
-import ModalDelete from '../../../../components/ModalDelete';
-import Select from '../../../../components/Select';
-import CustomSelect from '../../../../components/CustomSelect';
+import { Header, Button, InputFormik, ButtonBack, ModalDelete, Select, CustomSelect} from 'components';
 
 import {
-  Container,
-  Main,
-  HeaderContent,
-  FormCustom,
-  ContainerSwitch,
-  ContainerInputFile,
-  ContainerInputDate,
-  ContainerPetData,
-  InfoCard,
+    Container,
+    Main,
+    HeaderContent,
+    FormCustom,
+    ContainerSwitch,
+    ContainerInputFile,
+    ContainerInputDate,
+    ContainerPetData,
+    InfoCard,
 } from './styles';
 
 interface VaccinesMultiSelect {

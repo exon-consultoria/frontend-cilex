@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { transparentize } from 'polished';
 
-import chooseSvg from '../../assets/town.svg';
-import api from '../../services/api';
-import { useAuth } from '../../hooks/auth';
-import { useHasUserCompany } from '../../hooks/useHasUserCompany';
+import chooseSvg from 'assets/town.svg';
+import api from 'services/api';
+import { useAuth } from 'hooks/auth';
+import { useHasUserCompany } from 'hooks/useHasUserCompany';
 
-import HeaderHome from '../../components/HeaderHome';
+import { HeaderHome} from 'components/HeaderHome';
 
 import { Container, Options, Main, Companies, Company } from './styles';
-import { useCompany } from '../../hooks/useCompany';
-import { useToggleTheme } from '../../hooks/useToggleTheme';
+import { useCompany } from 'hooks/useCompany';
+import { useToggleTheme } from 'hooks/useToggleTheme';
 
 interface IUserCompany {
   id: string;

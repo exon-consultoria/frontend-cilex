@@ -11,14 +11,13 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
-import InputFormik from '../../components/InputFormik';
-import Button from '../../components/Button';
+import { InputFormik, Button } from 'components';
 
-import getValidationErrors from '../../utils/getValidationErrors';
-import api from '../../services/api';
+import getValidationErrors from 'utils/getValidationErrors';
+import api from 'services/api';
 
 import { Container, Content, AvatarInput } from './styles';
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from 'hooks/auth';
 
 interface ProfileFormData {
   name: string;

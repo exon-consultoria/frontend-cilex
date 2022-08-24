@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  withStyles,
-  Theme,
-  createStyles,
-  makeStyles,
+    withStyles,
+    Theme,
+    createStyles,
+    makeStyles,
 } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -89,7 +89,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CustomizedTables: React.FC = () => {
+export const CustomizedTables: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -122,4 +122,3 @@ const CustomizedTables: React.FC = () => {
   );
 };
 
-export default CustomizedTables;

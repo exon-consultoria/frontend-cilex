@@ -6,7 +6,7 @@ type TableProps = TableHTMLAttributes<HTMLTableElement> & {
   tbh: string[] | null;
 };
 
-const DefaultTable: React.FC<TableProps> = ({ children, tbh }) => {
+export const DefaultTable: React.FC<TableProps> = ({ children, tbh }) => {
   return (
     <Table>
       <thead>
@@ -19,4 +19,3 @@ const DefaultTable: React.FC<TableProps> = ({ children, tbh }) => {
   );
 };
 
-export default DefaultTable;

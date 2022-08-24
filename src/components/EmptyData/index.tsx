@@ -5,7 +5,7 @@ import EmptyBox from '../../assets/animation/empty-box.json';
 
 import { Container } from './styles';
 
-const EmptyData: React.FC = () => {
+export const EmptyData: React.FC = () => {
   return (
     <Container>
       <Lottie
@@ -25,4 +25,3 @@ const EmptyData: React.FC = () => {
   );
 };
 
-export default EmptyData;

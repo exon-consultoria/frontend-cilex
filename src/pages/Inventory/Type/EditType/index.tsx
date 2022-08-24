@@ -8,15 +8,12 @@ import { toast } from 'react-toastify';
 import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 
-import { IRegisterType } from '../../../../types/storage/type';
-import api from '../../../../services/api';
-import { useCrudModules } from '../../../../hooks/useCrudModules';
+import { IRegisterType } from 'types/storage/type';
+import api from 'services/api';
+import { useCrudModules } from 'hooks/useCrudModules';
 
-import Header from '../../../../components/Header';
-import Button from '../../../../components/Button';
-import InputFormik from '../../../../components/InputFormik';
-import ButtonBack from '../../../../components/ButtonBack';
-import ModalDelete from '../../../../components/ModalDelete';
+import { Header, Button, InputFormik, ButtonBack, ModalDelete } from 'components'
+
 
 import { Container, Main, HeaderContent, FormCustom } from './styles';
 

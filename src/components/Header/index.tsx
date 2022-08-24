@@ -7,7 +7,7 @@ import { useToggleTheme } from '../../hooks/useToggleTheme';
 import { useAuth } from '../../hooks/auth';
 import { useCompany } from '../../hooks/useCompany';
 
-import Button from '../Button';
+import { Button } from '../Button';
 
 import { Container } from './styles';
 
@@ -16,7 +16,7 @@ interface HeaderProps {
   disabledHome?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ pageName, disabledHome = false }) => {
+export const Header: React.FC<HeaderProps> = ({ pageName, disabledHome = false }) => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const { toggleTheme } = useToggleTheme();
@@ -62,4 +62,3 @@ const Header: React.FC<HeaderProps> = ({ pageName, disabledHome = false }) => {
   );
 };
 
-export default Header;

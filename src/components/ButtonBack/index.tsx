@@ -9,7 +9,7 @@ interface ButtonBackProps {
   destinationBack: string;
 }
 
-const ButtonBack: React.FC<ButtonBackProps> = ({ destinationBack }) => {
+export const ButtonBack: React.FC<ButtonBackProps> = ({ destinationBack }) => {
   const navigate = useNavigate();
   const { colors } = useContext(ThemeContext);
 
@@ -24,4 +24,3 @@ const ButtonBack: React.FC<ButtonBackProps> = ({ destinationBack }) => {
   );
 };
 
-export default ButtonBack;

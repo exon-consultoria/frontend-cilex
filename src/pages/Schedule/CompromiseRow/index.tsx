@@ -5,27 +5,24 @@ import { ImCheckboxUnchecked, ImCheckmark } from 'react-icons/im';
 import { FiSave } from 'react-icons/fi';
 import { Formik } from 'formik';
 
-import Select from '../../../components/Select';
-import Button from '../../../components/Button';
-import Modal from '../../../components/Modal';
+import { Select, Button, Modal, InputFormik} from 'components';
 
 import {
-  Container,
-  InsideContainer,
-  ServiceIdentifier,
-  AlignTexts,
-  FormCustom,
-  ContainerInputDate,
-  ContainerButtonsActions,
-  ButtonActions,
-  ContainerButtonsModal,
-  DeleteContainer,
-  DeleteOption,
-  Day,
+    Container,
+    InsideContainer,
+    ServiceIdentifier,
+    AlignTexts,
+    FormCustom,
+    ContainerInputDate,
+    ContainerButtonsActions,
+    ButtonActions,
+    ContainerButtonsModal,
+    DeleteContainer,
+    DeleteOption,
+    Day,
 } from './styles';
-import InputFormik from '../../../components/InputFormik';
 import { format } from 'date-fns';
-import { stringDaysWeek } from '../../../utils/daysOfWeek';
+import { stringDaysWeek } from 'utils/daysOfWeek';
 import { scheduleController } from '../schedule.controller';
 import { Compromise } from '../schedule.types'
 interface CompromiseRowProps {
@@ -110,11 +107,11 @@ const CompromiseRow: React.FC<CompromiseRowProps> = ({
               pet_id: compromise.pet.id,
               work_id: compromise.work.id,
               done: true,
-              dayInWeek : [],
+              dayInWeek: [],
               recurrence: compromise.recurrence,
               endDate: ''
             }}
-            onSubmit={(props) => handleSubmitForm({compromise,data:props})}
+            onSubmit={(props) => handleSubmitForm({compromise,data: props})}
           >
             {({ handleChange, touched, values, errors, handleSubmit }) => (
               <FormCustom onSubmit={handleSubmit}>

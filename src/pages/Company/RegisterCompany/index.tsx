@@ -6,28 +6,21 @@ import { FiSave } from 'react-icons/fi';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 
-import { useHasUserCompany } from '../../../hooks/useHasUserCompany';
-import api from '../../../services/api';
-import { maskPhone, maskCEP, maskCNPJ } from '../../../utils/masks';
-import {
-  unformatTel,
-  unformatCEP,
-  unformatCNPJ,
-} from '../../../utils/unformat';
+import { useHasUserCompany } from 'hooks/useHasUserCompany';
+import api from 'services/api';
+import { maskPhone, maskCEP, maskCNPJ } from 'utils/masks';
+import { unformatTel, unformatCEP, unformatCNPJ} from 'utils/unformat';
 
-import Button from '../../../components/Button';
-import Header from '../../../components/Header';
-import InputFormik from '../../../components/InputFormik';
-import ButtonBack from '../../../components/ButtonBack';
+import { Button, Header, InputFormik, ButtonBack } from 'components'
 
 import {
-  Container,
-  FormCustom,
-  Step,
-  Select,
-  ContainerCards,
-  Module,
-  AlignButtonsStepTwo,
+    Container,
+    FormCustom,
+    Step,
+    Select,
+    ContainerCards,
+    Module,
+    AlignButtonsStepTwo,
 } from './styles';
 
 type Module = {

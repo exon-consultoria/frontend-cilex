@@ -5,15 +5,11 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { FiSave } from 'react-icons/fi';
 
-import api from '../../../../services/api';
-import { IFamily } from '../../../../types/storage/family';
-import { IRegisterSubFamily } from '../../../../types/storage/subFamily';
+import api from 'services/api';
+import { IFamily } from 'types/storage/family';
+import { IRegisterSubFamily } from 'types/storage/subFamily';
 
-import Button from '../../../../components/Button';
-import Header from '../../../../components/Header';
-import InputFormik from '../../../../components/InputFormik';
-import ButtonBack from '../../../../components/ButtonBack';
-import Select from '../../../../components/Select';
+import { Button, Header, InputFormik, ButtonBack, Select } from 'components'
 
 import { Container, Main, FormCustom } from './styles';
 

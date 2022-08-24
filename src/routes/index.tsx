@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes , Route } from 'react-router-dom';
 
 import ForgotPassword from '../pages/ForgotPassword';
 import SignIn from '../pages/SignIn';
@@ -105,6 +105,8 @@ import EditWork from '../pages/Work/EditWork';
 
 import Schedule from '../pages/Schedule';
 
+import { EditIncome,ListIncome,RegisterIncome,SeeAllIncomes } from '../pages/Financial/Income';
+
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
@@ -144,6 +146,9 @@ const AppRoutes: React.FC = () => {
 
       {/* ---------------------- INÍCIO FINANCEIRO ---------------------- */}
       <Route path="/financial" element={<Financial />} />
+      <Route path="/financial/income" element={<ListIncome />} />
+      <Route path="/financial/income/register" element={<RegisterIncome />} />
+      <Route path="/financial/income/:id" element={<EditIncome />} />
       {/* ---------------------- FIM FINANCEIRO ---------------------- */}
 
       {/* ---------------------- INÍCIO LOGÍSTICA ---------------------- */}
@@ -257,6 +262,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/work/:id" element={<EditWork />} />
 
       <Route path="/schedule" element={<Schedule />} />
+
     </Routes>
   );
 };

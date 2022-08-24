@@ -6,6 +6,8 @@
   "rules": {
     "quotes": ["error", "single"],
     "no-mixed-spaces-and-tabs":"warn",
-    "indent":["warn", 2]
+    "indent":["warn", 2, { "ImportDeclaration": 2 }],
+    "key-spacing": ["error", { "beforeColon": false }],
+    "no-duplicate-imports": ["error", { "includeExports": true }]
   }
 }

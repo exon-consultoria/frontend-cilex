@@ -8,7 +8,7 @@ interface CheckboxProps {
   label: string;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ name, label }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ name, label }) => {
   return (
     <Container>
       <label htmlFor="checkboxReference">{label}</label>
@@ -17,4 +17,3 @@ const Checkbox: React.FC<CheckboxProps> = ({ name, label }) => {
   );
 };
 
-export default Checkbox;

@@ -6,24 +6,19 @@ import * as Yup from 'yup';
 
 import { scheduleController } from './schedule.controller'
 import ListCompromise from './ListCompromises';
-import Header from '../../components/Header';
-import Select from '../../components/Select';
-import Button from '../../components/Button';
-import Modal from '../../components/Modal';
-import ButtonBack from '../../components/ButtonBack';
-import { stringDaysWeek } from '../../utils/daysOfWeek'
+import { Header, Select, Button, Modal, ButtonBack, InputFormik} from 'components';
+import { stringDaysWeek } from 'utils/daysOfWeek'
 
 import 'react-calendar/dist/Calendar.css';
 
 import {
-  Container,
-  Main,
-  ActionsArea,
-  FormCustom,
-  ContainerInputDate,
-  Day
+    Container,
+    Main,
+    ActionsArea,
+    FormCustom,
+    ContainerInputDate,
+    Day
 } from './styles';
-import InputFormik from '../../components/InputFormik';
 
 const formSchemaCompromise = Yup.object().shape({
   date: Yup.string().required('Data Obrigatória'),
@@ -35,7 +30,7 @@ const formSchemaCompromise = Yup.object().shape({
 
 const Schedule: React.FC = () => {
   const {
-    actions:{
+    actions: {
       handleClickDay,
       handleChangeServiceSelected,
       handleSubmitForm,

@@ -8,20 +8,16 @@ import { HiOutlinePencilAlt } from 'react-icons/hi';
 import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../services/api';
+import api from 'services/api';
 
-import Header from '../../../components/Header';
-import InputFormik from '../../../components/InputFormik';
-import Button from '../../../components/Button';
-import ButtonBack from '../../../components/ButtonBack';
-import Checkbox from '../../../components/Checkbox';
+import { Header, InputFormik, Button, ButtonBack, Checkbox } from 'components'
 
 import {
-  Container,
-  Main,
-  FormCustom,
-  CheckboxContainer,
-  Select,
+    Container,
+    Main,
+    FormCustom,
+    CheckboxContainer,
+    Select,
 } from './styles';
 
 interface User {

@@ -5,12 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Formik } from 'formik';
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from 'hooks/auth';
 
-import InputFormik from '../../components/InputFormik';
-import Button from '../../components/Button';
+import { InputFormik, Button} from 'components';
 
-import solutionSvg from '../../assets/solution.svg';
+import solutionSvg from 'assets/solution.svg';
 
 import { Container, ShowOff, AnimationContainer, FormCustom } from './styles';
 

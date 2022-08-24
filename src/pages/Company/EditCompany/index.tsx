@@ -4,31 +4,28 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { FiSave } from 'react-icons/fi';
 import {
-  HiOutlineOfficeBuilding,
-  HiOutlinePencilAlt,
-  HiOutlineTrash,
+    HiOutlineOfficeBuilding,
+    HiOutlinePencilAlt,
+    HiOutlineTrash,
 } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../services/api';
-import { maskPhone, maskCEP, maskCNPJ } from '../../../utils/masks';
+import api from 'services/api';
+import { maskPhone, maskCEP, maskCNPJ } from 'utils/masks';
 
-import Header from '../../../components/Header';
-import Button from '../../../components/Button';
-import InputFormik from '../../../components/InputFormik';
-import ButtonBack from '../../../components/ButtonBack';
-import ModalDelete from '../../../components/ModalDelete';
+
+import { Header, Button, InputFormik, ButtonBack, ModalDelete } from 'components'
 
 import {
-  Container,
-  FormCustom,
-  Main,
-  Badge,
-  InfoCard,
-  HeaderContent,
-  ContainerCompanyData,
-  Select,
+    Container,
+    FormCustom,
+    Main,
+    Badge,
+    InfoCard,
+    HeaderContent,
+    ContainerCompanyData,
+    Select,
 } from './styles';
 
 interface Icompany {

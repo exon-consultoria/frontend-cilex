@@ -5,13 +5,10 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { FiSave } from 'react-icons/fi';
 
-import api from '../../../../services/api';
-import { IRegisterApplication } from '../../../../types/storage/application';
+import api from 'services/api';
+import { IRegisterApplication } from 'types/storage/application';
 
-import Button from '../../../../components/Button';
-import Header from '../../../../components/Header';
-import InputFormik from '../../../../components/InputFormik';
-import ButtonBack from '../../../../components/ButtonBack';
+import { Button, Header, InputFormik, ButtonBack } from 'components'
 
 import { Container, Main, FormCustom } from './styles';
 

@@ -2,10 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 
-import chooseSvg from '../../assets/road-sign.svg';
+import chooseSvg from 'assets/road-sign.svg';
 
-import Button from '../../components/Button';
-import HeaderHome from '../../components/HeaderHome';
+import { Button, HeaderHome } from 'components'
 
 import { Container, Options } from './styles';
 

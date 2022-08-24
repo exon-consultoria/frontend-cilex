@@ -3,14 +3,9 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { ThemeContext } from 'styled-components';
 
-import api from '../../../services/api';
+import api from 'services/api';
 
-import ButtonBack from '../../../components/ButtonBack';
-import NewButton from '../../../components/NewButton';
-import DefaultTable from '../../../components/DefaultTable';
-import ChangeCompany from '../../../components/ChangeCompany';
-import Header from '../../../components/Header';
-import EmptyData from '../../../components/EmptyData';
+import { ButtonBack, NewButton, DefaultTable, ChangeCompany, Header, EmptyData } from 'components'
 
 import { Container, Main } from './styles';
 

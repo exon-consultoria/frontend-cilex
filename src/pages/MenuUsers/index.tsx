@@ -3,8 +3,7 @@ import { FiUserCheck, FiUserMinus } from 'react-icons/fi';
 import { MdNotificationsActive } from 'react-icons/md';
 import { ThemeContext } from 'styled-components';
 
-import Header from '../../components/Header';
-import ButtonBack from '../../components/ButtonBack';
+import { Header, ButtonBack} from 'components';
 
 import { Container, Main, Module } from './styles';
 
