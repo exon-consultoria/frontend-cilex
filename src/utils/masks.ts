@@ -1,3 +1,5 @@
+import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+
 export const maskPhone = [
   '(',
   /[1-9]/,
@@ -54,3 +56,10 @@ export const maskCNPJ = [
   /\d/,
   /\d/,
 ];
+
+export const numberMask = createNumberMask({
+  prefix: '$',
+  includeThousandsSeparator: false,
+  allowDecimal: true,
+  decimalSymbol: ','
+})

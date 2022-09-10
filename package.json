@@ -26,6 +26,7 @@
     "react-text-mask": "^5.4.3",
     "react-toastify": "7.0.4",
     "styled-components": "^5.3.5",
+    "text-mask-addons": "^3.8.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

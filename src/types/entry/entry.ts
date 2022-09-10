@@ -3,15 +3,15 @@ export interface IEntry {
   date_income: string;
   type: string;
   financial_entity: string;
-  chart_of_accounts: string;
   description: string;
-  value: number;
+  value: string;
   date_to_pay: string;
-  value_payed: number;
+  value_payed: string;
   date_payed: string;
   title_status: string;
   payed_status: string;
-  cash_flow: number;
+  cash_flow: string;
+  income_id?: string;
 }
 
 

@@ -108,8 +108,8 @@ export const RegisterIncome: React.FC = () => {
                   >
                     <option value="">Escolha um tipo</option>
                     <option value='Receita'>Receita</option>
-                    <option value='Custo'>Custo</option>
                     <option value='Despesa'>Despesa</option>
+                    <option value='Custo'>Custo</option>
                   </Select>
                 </div>
                 <div id="align-button-save">

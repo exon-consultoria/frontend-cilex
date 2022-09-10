@@ -11,9 +11,15 @@ const Financial: React.FC = () => {
       <ButtonBack destinationBack="/menu" />
       <Main>
         <ModuleCard
-          to="/Financial/Income"
+          to="/financial/income"
           classIcon="bi bi-cash-coin"
-          title="Transações"
+          title="Cadastro de contas"
+          description="Gerencie suas entradas e saídas"
+        />
+        <ModuleCard
+          to="/financial/entry"
+          classIcon="bi bi-cash-coin"
+          title="Lançamentos"
           description="Gerencie suas entradas e saídas"
         />
       </Main>

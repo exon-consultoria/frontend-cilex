@@ -5,7 +5,7 @@ import { ThemeContext } from 'styled-components';
 
 import api from 'services/api';
 
-import { NewButton, DefaultTable, Header, ButtonBack, EmptyData} from 'components';
+import { NewButton, DefaultTable, Header, ButtonBack, EmptyData, ChangeCompany} from 'components';
 
 
 import { Container, Main } from './styles';

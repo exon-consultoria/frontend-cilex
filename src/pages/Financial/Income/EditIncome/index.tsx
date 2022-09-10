@@ -34,13 +34,16 @@ export const EditIncome: React.FC = () => {
   const handleSubmitForm = useCallback(
     async (data: IRegisterIncome) => {
       try {
+        const {account,code,type} = data
+        console.log(account,code,type)
         api
           .put(`/income/${id}`, {
-            code: data.code,
-            account: data.account,
-            type: data.type
+            code,
+            account,
+            type
           })
-          .then(() => {
+          .then((res) => {
+            console.log(res)
             toast.success('Atualizado com sucesso');
             navigate('/financial/income');
           })
@@ -81,8 +84,6 @@ export const EditIncome: React.FC = () => {
               </div>
               <div id="container-titles">
                 <h2>{income.code}</h2>
-                <p>{income.account}</p>
-                <p>{income.type}</p>
               </div>
               <div id="container-buttons-actions">
                 <Button
@@ -148,8 +149,8 @@ export const EditIncome: React.FC = () => {
                       >
                         <option value="">Escolha um tipo</option>
                         <option value='Receita'>Receita</option>
-                        <option value='Custo'>Custo</option>
                         <option value='Despesa'>Despesa</option>
+                        <option value='Custo'>Custo</option>
                       </Select>
                     </div>
                     <div id="align-button-save">

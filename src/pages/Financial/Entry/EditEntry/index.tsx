@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import { FiSave } from 'react-icons/fi';
 import { HiOutlinePencilAlt, HiOutlineTrash } from 'react-icons/hi';
 import { toast } from 'react-toastify';
@@ -13,7 +13,9 @@ import { IRegisterEntry } from 'types/entry/entry';
 
 import { Header,Button,InputFormik, ButtonBack, ModalDelete, Select } from 'components'
 
-import { Container, Main, HeaderContent, FormCustom } from './styles';
+import { Container, Main, HeaderContent, FormCustom, ContainerInputWithLabel } from './styles';
+import { IIncome } from 'types/Income/income';
+import { numberMask } from 'utils/masks';
 
 export const EditEntry: React.FC = () => {
   const navigate = useNavigate();
@@ -23,23 +25,28 @@ export const EditEntry: React.FC = () => {
 
   const [editting, setEditting] = useState<boolean>(false);
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
-  const [entry, setentry] = useState({} as IRegisterEntry);
+  const [entry, setEntry] = useState({} as IRegisterEntry);
+  const [incomes,setIncomes] = useState<IIncome[]>([])
 
   useEffect(() => {
     api.get<IRegisterEntry>(`/entry/${id}`).then(response => {
-      setentry(response.data);
+      setEntry(response.data);
     });
+    api.get('/income').then(response => {
+      setIncomes(response.data)
+    })
   }, [id]);
+
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterEntry) => {
+      console.log('aqui')
       try {
         api
           .put(`/entry/${id}`, {
             date_income: data.date_income,
             type: data.type,
             financial_entity: data.financial_entity,
-            chart_of_accounts: data.chart_of_accounts,
             description: data.description,
             value: data.value,
             date_to_pay: data.date_to_pay,
@@ -48,6 +55,7 @@ export const EditEntry: React.FC = () => {
             title_status: data.title_status,
             payed_status: data.payed_status,
             cash_flow: data.cash_flow,
+            income_id: data.income_id
           })
           .then(() => {
             toast.success('Atualizado com sucesso');
@@ -85,6 +93,7 @@ export const EditEntry: React.FC = () => {
     title_status: Yup.string(),
     payed_status: Yup.string(),
     cash_flow: Yup.number(),
+    income_id: Yup.string(),
   });
 
   return (
@@ -98,19 +107,7 @@ export const EditEntry: React.FC = () => {
                 <ButtonBack destinationBack="/financial/entry" />
               </div>
               <div id="container-titles">
-                <h2>{entry.date_income}</h2>
-                <p>{entry.cash_flow}</p>
-                <p>{entry.chart_of_accounts}</p>
-                <p>{entry.date_income}</p>
-                <p>{entry.date_payed}</p>
-                <p>{entry.date_to_pay}</p>
-                <p>{entry.description}</p>
-                <p>{entry.financial_entity}</p>
-                <p>{entry.payed_status}</p>
-                <p>{entry.title_status}</p>
-                <p>{entry.type}</p>
-                <p>{entry.value}</p>
-                <p>{entry.value_payed}</p>
+                <h2>{entry.financial_entity}</h2>
               </div>
               <div id="container-buttons-actions">
                 <Button
@@ -134,7 +131,6 @@ export const EditEntry: React.FC = () => {
                   date_income: entry.date_income,
                   type: entry.type,
                   financial_entity: entry.financial_entity,
-                  chart_of_accounts: entry.chart_of_accounts,
                   description: entry.description,
                   value: entry.value,
                   date_to_pay: entry.date_to_pay,
@@ -143,6 +139,7 @@ export const EditEntry: React.FC = () => {
                   title_status: entry.title_status,
                   payed_status: entry.payed_status,
                   cash_flow: entry.cash_flow,
+                  income_id: entry.income_id
                 }}
                 validationSchema={formSchemaEnclosureEdit}
                 onSubmit={handleSubmitForm}
@@ -150,17 +147,15 @@ export const EditEntry: React.FC = () => {
                 {({ handleChange, touched, values, errors, handleSubmit }) => (
                   <FormCustom onSubmit={handleSubmit}>
                     <div id="align-inputs">
-                      <InputFormik
-                        name="date_income"
-                        type="text"
-                        placeholder="Data de entrada"
-                        value={values.date_income}
-                        onChange={handleChange('date_income')}
-                        messageError={
-                          errors.date_income && touched.date_income ? errors.date_income : ''
-                        }
-                        maxLength={6}
-                      />
+                      <ContainerInputWithLabel>
+                        <p>Data de entrada: </p>
+                        <Field
+                          type="date"
+                          name="date_income"
+                          value={values.date_income}
+                          onChange={handleChange('born_at')}
+                        />
+                      </ContainerInputWithLabel>
                       <Select
                         name="type"
                         value={values.type}
@@ -179,113 +174,111 @@ export const EditEntry: React.FC = () => {
                       <InputFormik
                         name="financial_entity"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Entidade financeira"
                         value={values.financial_entity}
                         onChange={handleChange('financial_entity')}
                         messageError={
                           errors.financial_entity && touched.financial_entity ? errors.financial_entity : ''
                         }
-                        maxLength={6}
                       />
-                      <InputFormik
-                        name="chart_of_accounts"
-                        type="text"
-                        placeholder="Data de entrada"
-                        value={values.chart_of_accounts}
-                        onChange={handleChange('chart_of_accounts')}
-                        messageError={
-                          errors.chart_of_accounts && touched.chart_of_accounts ? errors.chart_of_accounts : ''
-                        }
-                        maxLength={6}
-                      />
-                      <InputFormik
+                      <InputFormik  
                         name="description"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Descrição"
                         value={values.description}
                         onChange={handleChange('description')}
                         messageError={
                           errors.description && touched.description ? errors.description : ''
                         }
-                        maxLength={6}
                       />
                       <InputFormik
                         name="value"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Valor"
                         value={values.value}
+                        mask={numberMask}
                         onChange={handleChange('value')}
                         messageError={
                           errors.value && touched.value ? errors.value : ''
                         }
-                        maxLength={6}
                       />
                       <InputFormik
                         name="date_to_pay"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Vencimento"
                         value={values.date_to_pay}
                         onChange={handleChange('date_to_pay')}
                         messageError={
                           errors.date_to_pay && touched.date_to_pay ? errors.date_to_pay : ''
                         }
-                        maxLength={6}
                       />
                       <InputFormik
                         name="value_payed"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Valor da baixa"
+                        mask={numberMask}
                         value={values.value_payed}
                         onChange={handleChange('value_payed')}
                         messageError={
                           errors.value_payed && touched.value_payed ? errors.value_payed : ''
                         }
-                        maxLength={6}
                       />
                       <InputFormik
                         name="date_payed"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Data da baixa"
                         value={values.date_payed}
                         onChange={handleChange('date_payed')}
                         messageError={
                           errors.date_payed && touched.date_payed ? errors.date_payed : ''
                         }
-                        maxLength={6}
                       />
                       <InputFormik
                         name="title_status"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Status do titulo"
                         value={values.title_status}
                         onChange={handleChange('title_status')}
                         messageError={
                           errors.title_status && touched.title_status ? errors.title_status : ''
                         }
-                        maxLength={6}
                       />
                       <InputFormik
                         name="payed_status"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Status da baixa"
                         value={values.payed_status}
                         onChange={handleChange('payed_status')}
                         messageError={
                           errors.payed_status && touched.payed_status ? errors.payed_status : ''
                         }
-                        maxLength={6}
                       />
                       <InputFormik
                         name="cash_flow"
                         type="text"
-                        placeholder="Data de entrada"
+                        placeholder="Fluxo de caixa"
                         value={values.cash_flow}
+                        mask={numberMask}
                         onChange={handleChange('cash_flow')}
                         messageError={
                           errors.cash_flow && touched.cash_flow ? errors.cash_flow : ''
                         }
-                        maxLength={6}
                       />
+                      <Select
+                        name="income_id"
+                        value={values.income_id}
+                        onChange={handleChange('income_id')}
+                        messageError={
+                          errors.type && touched.type
+                            ? errors.type
+                            : ''
+                        }
+                      >
+                        <option value=''>Selecione um plano de contas</option>
+                        {incomes?.map((income) => (
+                          <option value={income.id}>{income.account}</option>
+                        ))}
+                      </Select>
                     </div>
                     <div id="align-button-save">
                       <Button layoutColor="button-green" type="submit">

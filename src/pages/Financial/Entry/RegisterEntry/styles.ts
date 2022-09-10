@@ -1,3 +1,4 @@
+import { lighten } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -34,5 +35,23 @@ export const FormCustom = styled.form`
     @media (max-width: 900px) {
       width: 100%;
     }
+  }
+`;
+
+export const ContainerInputWithLabel = styled.div`
+  border: 2px solid #666360;
+  border-radius: 10px;
+
+  padding: 0 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    width: 70%;
+    padding: 0.275rem;
+    border: 1px solid ${lighten(0.5, '#666360')};
+    border-radius: 10px;
   }
 `;
