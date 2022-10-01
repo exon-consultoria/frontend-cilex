@@ -203,7 +203,6 @@ const EditPet: React.FC = () => {
     note: Yup.string(),
   });
 
-  console.log(pet);
 
   return (
     <>

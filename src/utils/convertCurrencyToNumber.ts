@@ -1,0 +1,1 @@
+export const convertCurrencyToNumber = (value:string) => parseFloat(value.replace('$','').replace(',','.'))

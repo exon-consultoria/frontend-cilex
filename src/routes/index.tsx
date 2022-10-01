@@ -106,6 +106,7 @@ import EditWork from '../pages/Work/EditWork';
 import Schedule from '../pages/Schedule';
 
 import { EditIncome,ListIncome,RegisterIncome,SeeAllIncomes } from '../pages/Financial/Income';
+import { EditEntry,ListEntry,RegisterEntry,SeeAllEntries } from '../pages/Financial/Entry';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -149,6 +150,10 @@ const AppRoutes: React.FC = () => {
       <Route path="/financial/income" element={<ListIncome />} />
       <Route path="/financial/income/register" element={<RegisterIncome />} />
       <Route path="/financial/income/:id" element={<EditIncome />} />
+
+      <Route path="/financial/entry" element={<ListEntry />} />
+      <Route path="/financial/entry/register" element={<RegisterEntry />} />
+      <Route path="/financial/entry/:id" element={<EditEntry />} />
       {/* ---------------------- FIM FINANCEIRO ---------------------- */}
 
       {/* ---------------------- INÍCIO LOGÍSTICA ---------------------- */}

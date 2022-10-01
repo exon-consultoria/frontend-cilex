@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Header from '../../components/Header';
-import ButtonBack from '../../components/ButtonBack';
-import ModuleCard from '../../components/ModuleCard';
+import { Header, ButtonBack, ModuleCard } from 'components'
 
 import { Container, Main } from './styles';
 
@@ -13,63 +11,15 @@ const Financial: React.FC = () => {
       <ButtonBack destinationBack="/menu" />
       <Main>
         <ModuleCard
-          to="/home"
+          to="/financial/income"
           classIcon="bi bi-cash-coin"
-          title="Transações"
+          title="Cadastro de contas"
           description="Gerencie suas entradas e saídas"
         />
         <ModuleCard
-          to="/home"
+          to="/financial/entry"
           classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
-          description="Gerencie suas entradas e saídas"
-        />
-        <ModuleCard
-          to="/home"
-          classIcon="bi bi-cash-coin"
-          title="Transações"
+          title="Lançamentos"
           description="Gerencie suas entradas e saídas"
         />
       </Main>
