@@ -11,7 +11,7 @@ import api from 'services/api';
 import { useCrudModules } from 'hooks/useCrudModules';
 import { IRegisterEnclosure } from 'types/pet/enclosure';
 
-import { Header, Button, InputFormik, ButtonBack, ModalDelete} from 'components';
+import { Header, Button, InputFormik, ButtonBack, ModalDelete, Select} from 'components';
 
 import { Container, Main, HeaderContent, FormCustom } from './styles';
 
@@ -33,11 +33,13 @@ const EditEnclosure: React.FC = () => {
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterEnclosure) => {
+      const { code, description, size } = data
       try {
         api
           .put(`/enclosure/${id}`, {
-            code: data.code,
-            description: data.description,
+            code,
+            description,
+            size
           })
           .then(() => {
             toast.success('Atualizado com sucesso');
@@ -80,6 +82,7 @@ const EditEnclosure: React.FC = () => {
               <div id="container-titles">
                 <h2>{enclosure.code}</h2>
                 <p>{enclosure.description}</p>
+                <p>{enclosure.size}</p>
               </div>
               <div id="container-buttons-actions">
                 <Button
@@ -102,6 +105,7 @@ const EditEnclosure: React.FC = () => {
                 initialValues={{
                   code: enclosure.code,
                   description: enclosure.description,
+                  size: enclosure.size
                 }}
                 validationSchema={formSchemaEnclosureEdit}
                 onSubmit={handleSubmitForm}
@@ -132,6 +136,19 @@ const EditEnclosure: React.FC = () => {
                             : ''
                         }
                       />
+                      <Select
+                        name="dog_size"
+                        value={values.size}
+                        onChange={handleChange('size')}
+                        messageError={
+                          errors.size && touched.size ? errors.size : ''
+                        }
+                      >
+                        <option value="">Alocação</option>
+                        <option value="p">Pequeno</option>
+                        <option value="m">Médio</option>
+                        <option value="g">Grande</option>
+                      </Select>
                     </div>
                     <div id="align-button-save">
                       <Button layoutColor="button-green" type="submit">

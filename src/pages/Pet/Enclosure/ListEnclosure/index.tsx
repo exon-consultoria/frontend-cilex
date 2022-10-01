@@ -32,12 +32,13 @@ const ListEnclosure: React.FC = () => {
             <NewButton to="/pet/enclosure/all">Ver Todos</NewButton>
           </div>
           {enclosures.length > 0 ? (
-            <DefaultTable tbh={['Código', 'Canil']}>
+            <DefaultTable tbh={['Código', 'Canil', 'Alocação']}>
               <tbody>
                 {enclosures.map(enclosure => (
                   <tr key={enclosure.id}>
                     <td>{enclosure.code}</td>
                     <td>{enclosure.description}</td>
+                    <td>{enclosure.size}</td>
                     <td>
                       <Link
                         style={{ textDecoration: 'none' }}

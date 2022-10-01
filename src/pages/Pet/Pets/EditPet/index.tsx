@@ -59,6 +59,7 @@ interface RegisterPetForm {
   vaccines: string[];
   owner_id: string;
   note: string;
+  dog_size: string;
 }
 
 const EditPet: React.FC = () => {
@@ -149,6 +150,7 @@ const EditPet: React.FC = () => {
           vaccines,
           owner_id,
           note,
+          dog_size
         } = data;
 
         api
@@ -164,6 +166,7 @@ const EditPet: React.FC = () => {
             items: items || undefined,
             vaccines: vaccines || undefined,
             note: note || undefined,
+            dog_size
           })
           .then(() => {
             if (picture) {
@@ -201,6 +204,7 @@ const EditPet: React.FC = () => {
     vaccines: Yup.array(),
     owner_id: Yup.string(),
     note: Yup.string(),
+    dog_size: Yup.string(),
   });
 
 
@@ -454,6 +458,19 @@ const EditPet: React.FC = () => {
                         />
                         <img src={camera} alt="Select img" />
                       </ContainerInputFile>
+                      <Select
+                        name="dog_size"
+                        value={values.dog_size}
+                        onChange={handleChange('dog_size')}
+                        messageError={
+                          errors.dog_size && touched.dog_size ? errors.dog_size : ''
+                        }
+                      >
+                        <option value="">Porte</option>
+                        <option value="p">Pequeno</option>
+                        <option value="m">Médio</option>
+                        <option value="g">Grande</option>
+                      </Select>
                     </div>
                     <div id="align-button-save">
                       <Button layoutColor="button-green" type="submit">
