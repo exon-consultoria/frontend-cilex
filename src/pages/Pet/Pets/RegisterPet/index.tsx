@@ -16,9 +16,10 @@ import { ThemeContext } from 'styled-components';
 import api from 'services/api';
 import camera from 'assets/camera.svg';
 import { IVaccine } from 'types/pet/vaccine';
-import { IEnclosure } from 'types/pet/enclosure';
+import { IEnclosure, IEnclosureSizes } from 'types/pet/enclosure';
 
 import { Header, ButtonBack, InputFormik, Button, Select, CustomSelect} from 'components';
+import { Occupation } from '../../Occupation'
 
 import {
     Container,
@@ -47,6 +48,7 @@ interface RegisterPetForm {
   vaccines: string[];
   owner_id: string;
   note: string;
+  dog_size: string;
 }
 
 interface People {
@@ -67,7 +69,8 @@ const formSchemaPet = Yup.object().shape({
   enclosure_id: Yup.string(),
   vaccines: Yup.array(),
   owner_id: Yup.string().required('Dono Obrigatório'),
-  note: Yup.string(),
+  note: Yup.string().required(),
+  dog_size: Yup.string().required()
 });
 
 const RegisterPet: React.FC = () => {
@@ -79,7 +82,12 @@ const RegisterPet: React.FC = () => {
   const [vaccinesOptions, setVaccinesOptions] = useState<VaccinesMultiSelect[]>(
     [],
   );
-  const [enclosures, setEnclosures] = useState<IEnclosure[]>([]);
+  const [allEnclosures, setAllEnclosures] = useState<IEnclosure[]>([]);
+  const [enclosure,setEnclosure] = useState<IEnclosure>({} as IEnclosure)
+  const [dogSize, setDogSize] = useState<string>('')
+  const [enclosuresBySize,setEnclosuresBySize] = useState<IEnclosure[]>([])
+  const [selectedEnclosure, setSelectedEnclosure] = useState<string>('')
+  const [hasCapacity, setHasCapacity] = useState<boolean>(false)
 
   const previewPetPicture = useMemo(() => {
     return petPicture ? URL.createObjectURL(petPicture) : null;
@@ -99,7 +107,7 @@ const RegisterPet: React.FC = () => {
       setVaccinesOptions(fixListToUseInMultiSelect);
     });
     api.get<IEnclosure[]>('/enclosure').then(response => {
-      setEnclosures(response.data);
+      setAllEnclosures(response.data);
     });
   }, []);
 
@@ -119,7 +127,26 @@ const RegisterPet: React.FC = () => {
           vaccines,
           owner_id,
           note,
+          dog_size
         } = data;
+
+        const enclosureUpdated = enclosure.enclosure_size
+          .map((enclosure) => {
+            if(enclosure.size === dog_size) {
+              const newSize = Number(enclosure.available) - 1
+              if(newSize <= 0) return enclosure
+              enclosure.available = newSize.toString()
+              return enclosure
+            }
+            return enclosure
+          })
+
+        api.put(`/enclosure/${enclosure.id}`, {
+          code: enclosure.code,
+          description: enclosure.description,
+          size: enclosure.size,
+          enclosure_size: enclosureUpdated
+        })
 
         api
           .post('/pet', {
@@ -134,6 +161,7 @@ const RegisterPet: React.FC = () => {
             items: items || undefined,
             vaccines: vaccines || undefined,
             note: note || undefined,
+            size: dog_size
           })
           .then(response => {
             if (picture) {
@@ -141,7 +169,7 @@ const RegisterPet: React.FC = () => {
 
               const formData = new FormData();
               formData.append('picture', picture);
-
+              
               api.patch(`/pet/${pet_id}`, formData).then(() => {
                 toast.success('Registrado com sucesso');
                 navigate('/pet/pets');
@@ -155,10 +183,43 @@ const RegisterPet: React.FC = () => {
         toast.error('Ocorreu um erro no registro do Pet');
       }
     },
-    [history],
+    [history,enclosure]
   );
 
-  console.log('Re-load');
+  useEffect(() => {
+    const enclosureSize = allEnclosures.filter((enclosure) => {
+      const { size } = enclosure
+
+      const isBig = size === 'g'
+      const isMedium = size === 'm' && dogSize !== 'g'
+      const isSmall = size ==='p' && dogSize === 'p'
+  
+      if(dogSize === 'null') return null
+      
+      if(isBig) return enclosure
+
+      if(isMedium) return enclosure
+
+      if(isSmall) return enclosure
+    })
+    setEnclosuresBySize(enclosureSize)
+  },[dogSize])
+
+  
+  useEffect(() => {
+    if(selectedEnclosure === 'null') return setEnclosure({} as IEnclosure)
+    
+    const enclosure = allEnclosures.find((enclosure) => enclosure.id === selectedEnclosure)
+    
+    if(enclosure) {
+      setEnclosure(enclosure)
+    }
+  },[selectedEnclosure])
+
+  useMemo(() => {
+    setHasCapacity(enclosure?.enclosure_size?.some((enclosure) => enclosure.size === dogSize && Number(enclosure.available) > 0))
+  },[enclosure,dogSize])
+
 
   return (
     <>
@@ -180,6 +241,7 @@ const RegisterPet: React.FC = () => {
               vaccines: [],
               owner_id: '',
               note: '',
+              dog_size: ''
             }}
             validationSchema={formSchemaPet}
             onSubmit={handleSubmitForm}
@@ -193,6 +255,7 @@ const RegisterPet: React.FC = () => {
               setFieldValue,
             }) => (
               <FormCustom onSubmit={handleSubmit}>
+                <Occupation enclosure={enclosure}/>
                 <div id="align-inputs">
                   <InputFormik
                     name="name"
@@ -224,6 +287,22 @@ const RegisterPet: React.FC = () => {
                     />
                   </ContainerInputDate>
                   <Select
+                    name="dog_size"
+                    value={values.dog_size}
+                    onChange={e=> {
+                      handleChange(e)
+                      setDogSize(e.target.value)
+                    }}
+                    messageError={
+                      errors.dog_size && touched.dog_size ? errors.dog_size : ''
+                    }
+                  >
+                    <option value="null">Porte</option>
+                    <option value="p">Pequeno</option>
+                    <option value="m">Médio</option>
+                    <option value="g">Grande</option>
+                  </Select>
+                  <Select
                     name="gender"
                     value={values.gender}
                     onChange={handleChange('gender')}
@@ -238,10 +317,14 @@ const RegisterPet: React.FC = () => {
                   <Select
                     name="enclosure_id"
                     value={values.enclosure_id}
-                    onChange={handleChange('enclosure_id')}
+                    onChange={e => {
+                      const inputValue = e.target.value
+                      handleChange(e)
+                      setSelectedEnclosure(inputValue)
+                    }}
                   >
-                    <option value="">Canil</option>
-                    {enclosures.map(enclosure => (
+                    <option value="null">Canil</option>
+                    {enclosuresBySize.map(enclosure => (
                       <option key={enclosure.id} value={enclosure.id}>
                         {enclosure.code} - {enclosure.description}
                       </option>
@@ -338,9 +421,9 @@ const RegisterPet: React.FC = () => {
                   </ContainerInputFile>
                 </div>
                 <div id="align-button-save">
-                  <Button layoutColor="button-green" type="submit">
+                  <Button layoutColor="button-green" disabled={!hasCapacity} type="submit">
                     <FiSave size={24} />
-                    <span>Salvar</span>
+                    <span>{hasCapacity ? 'Salvar': 'Canil não suporta'}</span>
                   </Button>
                 </div>
               </FormCustom>

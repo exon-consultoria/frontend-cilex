@@ -16,6 +16,7 @@ export interface IPets {
   breed: string;
   gender: string;
   castrated: boolean;
+  size: string;
 }
 
 const ListPet: React.FC = () => {
@@ -37,13 +38,14 @@ const ListPet: React.FC = () => {
           <ButtonBack destinationBack="/pet" />
           <NewButton to="/pet/pets/register">Novo</NewButton>
           {pets.length > 0 ? (
-            <DefaultTable tbh={['Nome', 'Raça', 'Castrado ?']}>
+            <DefaultTable tbh={['Nome', 'Raça', 'Castrado ?', 'Porte']}>
               <tbody>
                 {pets.map(pet => (
                   <tr key={pet.id}>
                     <td>{pet.name}</td>
                     <td>{pet.breed}</td>
                     <td>{pet.castrated ? 'Sim' : 'Não'}</td>
+                    <td>{pet.size}</td>
                     <td>
                       <Link
                         style={{ textDecoration: 'none' }}

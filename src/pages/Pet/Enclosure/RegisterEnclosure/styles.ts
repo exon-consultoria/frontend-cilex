@@ -14,10 +14,14 @@ export const Main = styled.main`
 export const FormCustom = styled.form`
   #align-inputs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
 
     margin-bottom: 1rem;
+
+    select {
+      width: 100%;
+    }
 
     @media (max-width: 900px) {
       display: flex;
@@ -28,7 +32,7 @@ export const FormCustom = styled.form`
   }
 
   #align-button-save {
-    width: 50%;
+    width: 300px;
     margin-right: auto;
 
     @media (max-width: 900px) {
