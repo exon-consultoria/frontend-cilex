@@ -55,13 +55,12 @@ export const RegisterEntry: React.FC = () => {
           date_payed,
           title_status,
           payed_status,
-          cash_flow,
           income_id
         } = data;
 
         const valueFormatted = convertCurrencyToNumber(value)
         const valuePayedFormatted = convertCurrencyToNumber(value_payed)
-        const cashFlowFormatted = convertCurrencyToNumber(cash_flow)
+        const cashFlowFormatted = (valuePayedFormatted - valueFormatted).toFixed(2)
 
         api
           .post('/entry', {
@@ -100,7 +99,7 @@ export const RegisterEntry: React.FC = () => {
     },
     [history],
   );
-
+    
 
   return (
     <>
@@ -238,8 +237,8 @@ export const RegisterEntry: React.FC = () => {
                     }
                   >
                     <option value="">Status do título</option>
-                    <option value='Entrada'>Atrasado</option>
-                    <option value='Saida'>Pago</option>
+                    <option value='Atrasado'>Atrasado</option>
+                    <option value='Pago'>Pago</option>
                   </Select>
                   <Select
                     name="payed_status"
@@ -252,20 +251,9 @@ export const RegisterEntry: React.FC = () => {
                     }
                   >
                     <option value="">Status da baixa</option>
-                    <option value='Entrada'>Atrasada</option>
-                    <option value='Saida'>Paga</option>
+                    <option value='Atrasada'>Atrasada</option>
+                    <option value='Paga'>Paga</option>
                   </Select>
-                  <InputFormik
-                    name="cash_flow"
-                    type="text"
-                    placeholder="Fluxo de caixa"
-                    value={values.cash_flow}
-                    mask={numberMask}
-                    onChange={handleChange('cash_flow')}
-                    messageError={
-                      errors.cash_flow && touched.cash_flow ? errors.cash_flow : ''
-                    }
-                  />
                 </div>
                 <div id="align-button-save">
                   <Button layoutColor="button-green" type="submit">

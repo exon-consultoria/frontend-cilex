@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Params, useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Field, Formik } from 'formik';
 import { FiSave } from 'react-icons/fi';
@@ -19,7 +19,7 @@ import { numberMask } from 'utils/masks';
 
 export const EditEntry: React.FC = () => {
   const navigate = useNavigate();
-  const { id }: any = useParams();
+  const { id }: Readonly<Params<string>> = useParams();
   const { colors } = useContext(ThemeContext);
   const { deleteDataFromModule } = useCrudModules();
 
@@ -40,7 +40,6 @@ export const EditEntry: React.FC = () => {
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterEntry) => {
-      console.log('aqui')
       try {
         api
           .put(`/entry/${id}`, {
@@ -95,7 +94,7 @@ export const EditEntry: React.FC = () => {
     cash_flow: Yup.number(),
     income_id: Yup.string(),
   });
-
+  
   return (
     <>
       <Container>

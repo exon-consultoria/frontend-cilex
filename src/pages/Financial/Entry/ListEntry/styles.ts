@@ -1,3 +1,4 @@
+import { lighten } from 'polished'
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -9,6 +10,11 @@ export const Main = styled.main`
   flex-direction: column;
 
   margin-top: 2rem;
+
+  .money {
+   height: 27px;
+   text-align: center;
+  }
 
   #align-buttons {
     display: flex;
@@ -44,3 +50,43 @@ export const Main = styled.main`
     gap: 1rem;
   }
 `;
+
+export const ContainerInputWithLabel = styled.div`
+  border: 2px solid #666360;
+  border-radius: 10px;
+
+  padding: 0 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+
+  input {
+    padding: 0.275rem;
+    border: 1px solid ${lighten(0.5, '#666360')};
+    border-radius: 10px;
+  }
+`;
+
+export const TotalCashFlow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+type CashFlowTextProps = {
+  balance: 'positive' | 'negative'
+}
+
+export const CashFlowText = styled.div<CashFlowTextProps>`
+  width: 200px;
+  height: 100px;
+  border-radius: 16px;
+  background-color: ${props => props.balance === 'positive' ? '#8dc73e' : 'red'};
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+`
