@@ -83,7 +83,9 @@ export const EditIncome: React.FC = () => {
                 <ButtonBack destinationBack="/financial/income" />
               </div>
               <div id="container-titles">
-                <h2>{income.code}</h2>
+                <h2>Código {income.code}</h2>
+                <h2>Serviço: {income.account}</h2>
+                <h2>Tipo: {income.type}</h2>
               </div>
               <div id="container-buttons-actions">
                 <Button

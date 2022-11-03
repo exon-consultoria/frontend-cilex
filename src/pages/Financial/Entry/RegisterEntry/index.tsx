@@ -88,13 +88,13 @@ export const RegisterEntry: React.FC = () => {
               dataError.message ===
               'There\'s already an entity registered with the same code'
             ) {
-              toast.error('Já existe uma conta cadastrada com o mesmo código!');
+              toast.error('Já existe um lançamento cadastrada com o mesmo código!');
             }
 
             return error;
           });
       } catch (err) {
-        toast.error('Ocorreu um erro no registro da Conta!');
+        toast.error('Ocorreu um erro no registro do Lançamento!');
       }
     },
     [history],
@@ -104,7 +104,7 @@ export const RegisterEntry: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Cadastro de Contas" />
+        <Header pageName="Cadastro de Lançamento" />
         <ButtonBack destinationBack="/financial/Entry" />
         <Main>
           <Formik

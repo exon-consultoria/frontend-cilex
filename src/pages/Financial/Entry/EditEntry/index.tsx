@@ -37,6 +37,8 @@ export const EditEntry: React.FC = () => {
     })
   }, [id]);
 
+  console.log(entry)
+
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterEntry) => {
@@ -98,7 +100,7 @@ export const EditEntry: React.FC = () => {
   return (
     <>
       <Container>
-        <Header pageName="Editar Conta" />
+        <Header pageName="Editar Lançamento" />
         {entry && (
           <Main>
             <HeaderContent>
@@ -106,7 +108,10 @@ export const EditEntry: React.FC = () => {
                 <ButtonBack destinationBack="/financial/entry" />
               </div>
               <div id="container-titles">
-                <h2>{entry.financial_entity}</h2>
+                <h2>Entidade Financeira: {entry.financial_entity}</h2>
+                <h2>Tipo: {entry.type}</h2>
+                <h2>Descrição: {entry.description}</h2>
+                <h2>Valor: {entry.value}</h2>
               </div>
               <div id="container-buttons-actions">
                 <Button
@@ -165,10 +170,9 @@ export const EditEntry: React.FC = () => {
                             : ''
                         }
                       >
-                        <option value="">Escolha um tipo</option>
-                        <option value='Receita'>Receita</option>
-                        <option value='Custo'>Custo</option>
-                        <option value='Despesa'>Despesa</option>
+                        <option disabled>Selecione um tipo</option>
+                        <option value='Entrada'>Entrada</option>
+                        <option value='Saida'> Saida</option>
                       </Select>
                       <InputFormik
                         name="financial_entity"
@@ -201,16 +205,15 @@ export const EditEntry: React.FC = () => {
                           errors.value && touched.value ? errors.value : ''
                         }
                       />
-                      <InputFormik
-                        name="date_to_pay"
-                        type="text"
-                        placeholder="Vencimento"
-                        value={values.date_to_pay}
-                        onChange={handleChange('date_to_pay')}
-                        messageError={
-                          errors.date_to_pay && touched.date_to_pay ? errors.date_to_pay : ''
-                        }
-                      />
+                      <ContainerInputWithLabel>
+                        <p>Vencimento: </p>
+                        <Field
+                          type="date"
+                          name="date_to_pay"
+                          value={values.date_to_pay}
+                          onChange={handleChange('date_to_pay')}
+                        />
+                      </ContainerInputWithLabel>
                       <InputFormik
                         name="value_payed"
                         type="text"
@@ -222,16 +225,15 @@ export const EditEntry: React.FC = () => {
                           errors.value_payed && touched.value_payed ? errors.value_payed : ''
                         }
                       />
-                      <InputFormik
-                        name="date_payed"
-                        type="text"
-                        placeholder="Data da baixa"
-                        value={values.date_payed}
-                        onChange={handleChange('date_payed')}
-                        messageError={
-                          errors.date_payed && touched.date_payed ? errors.date_payed : ''
-                        }
-                      />
+                      <ContainerInputWithLabel>
+                        <p>Data da baixa: </p>
+                        <Field
+                          type="date"
+                          name="date_payed"
+                          value={values.date_payed}
+                          onChange={handleChange('date_payed')}
+                        />
+                      </ContainerInputWithLabel>
                       <InputFormik
                         name="title_status"
                         type="text"

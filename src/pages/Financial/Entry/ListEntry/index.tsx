@@ -87,8 +87,6 @@ export const ListEntry: React.FC = () => {
   }, []);
 
 
-  const totalCashFlow = entriesFiltered.reduce((acc,curr) => Number(curr.cash_flow) + acc,0).toFixed(2)
-
   const entriesByMonth = entriesFiltered.map((entry) => {
     const month = format(new Date(entry.date_payed),'MMM', { locale: ptBR })
     return {...entry, month}
@@ -97,6 +95,11 @@ export const ListEntry: React.FC = () => {
   
   const totalReceive = chartValue(entriesByMonth, 'Entrada')
   const totalPayed = chartValue(entriesByMonth, 'Saida')
+
+  const a = totalReceive.reduce((acc,curr) => acc + curr, 0)
+  const b = totalPayed.reduce((acc,curr) => acc+ curr, 0)
+  
+  const totalCashFlow = (- b + a).toFixed(2)
 
   const chartValues = {
     labels: months,
