@@ -49,11 +49,11 @@ export const Table = ({incomes,entries,colors}:TableProps) => {
 
             <td className="money"><span>R$</span> {entry.value.includes('.') ? entry.value : `${entry.value}.00`}</td>
 
-            <td>{formatDate(new Date(entry.date_to_pay))}</td>
+            <td>{entry.date_to_pay ? formatDate(new Date(entry.date_to_pay)):null}</td>
 
             <td className="money"><span>R$</span> {entry.value_payed.includes('.') ? entry.value_payed : `${entry.value_payed}.00`}</td>
 
-            <td>{formatDate(new Date(entry.date_payed))}</td>
+            <td>{entry.date_payed ? formatDate(new Date(entry.date_payed)):null}</td>
 
             <td>{entry.title_status}</td>
             <td>{entry.payed_status}</td>
