@@ -88,8 +88,11 @@ export const ListEntry: React.FC = () => {
 
 
   const entriesByMonth = entriesFiltered.map((entry) => {
-    const month = format(new Date(entry.date_payed),'MMM', { locale: ptBR })
-    return {...entry, month}
+    if(entry.date_payed) {
+      const month = format(new Date(entry.date_payed),'MMM', { locale: ptBR })
+      return {...entry, month}
+    }
+    return {...entry}
   })
 
   
