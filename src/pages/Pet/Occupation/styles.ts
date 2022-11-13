@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between; 
 `;
 
 export const Content = styled.div`
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
 gap: 10px;
@@ -26,4 +23,10 @@ export const Target = styled.div`
   place-items: center;
   color: #fff;
   text-transform: uppercase;
+`
+
+export const SizeText = styled.p`
+  margin:0;
+  width: 80px;
+  font-weight: bold;
 `

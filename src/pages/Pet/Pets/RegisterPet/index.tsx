@@ -16,7 +16,7 @@ import { ThemeContext } from 'styled-components';
 import api from 'services/api';
 import camera from 'assets/camera.svg';
 import { IVaccine } from 'types/pet/vaccine';
-import { IEnclosure, IEnclosureSizes } from 'types/pet/enclosure';
+import { IEnclosure } from 'types/pet/enclosure';
 
 import { Header, ButtonBack, InputFormik, Button, Select, CustomSelect} from 'components';
 import { Occupation } from '../../Occupation'
@@ -130,22 +130,44 @@ const RegisterPet: React.FC = () => {
           dog_size
         } = data;
 
-        const enclosureUpdated = enclosure.enclosure_size
-          .map((enclosure) => {
-            if(enclosure.size === dog_size) {
-              const newSize = Number(enclosure.available) - 1
-              if(newSize <= 0) return enclosure
-              enclosure.available = newSize.toString()
-              return enclosure
+        const {
+          code,
+          description,
+          size,
+          enclosure_size_big_available,
+          enclosure_size_medium_available,
+          enclosure_size_small_available 
+        } = enclosure
+
+        const updateEnclosure = dogSize === 'p' 
+          ?  {
+            enclosure_size_big_available,
+            enclosure_size_medium_available,
+            enclosure_size_small_available: (Number(enclosure.enclosure_size_small_available) - 1).toString()
+          } 
+          : dogSize === 'm' 
+            ? {
+              enclosure_size_big_available,
+              enclosure_size_medium_available: (Number(enclosure.enclosure_size_medium_available) - 1).toString(),
+              enclosure_size_small_available
+            } 
+            : dogSize === 'g' ? {
+              enclosure_size_big_available: (Number(enclosure.enclosure_size_big_available) - 1).toString(),
+              enclosure_size_medium_available,
+              enclosure_size_small_available
+            } : {
+              enclosure_size_big_available,
+              enclosure_size_medium_available,
+              enclosure_size_small_available
             }
-            return enclosure
-          })
+
+        console.log(updateEnclosure,'teste')
 
         api.put(`/enclosure/${enclosure.id}`, {
-          code: enclosure.code,
-          description: enclosure.description,
-          size: enclosure.size,
-          enclosure_size: enclosureUpdated
+          code,
+          description,
+          size,
+          ...updateEnclosure
         })
 
         api
@@ -161,7 +183,7 @@ const RegisterPet: React.FC = () => {
             items: items || undefined,
             vaccines: vaccines || undefined,
             note: note || undefined,
-            size: dog_size
+            size: dog_size 
           })
           .then(response => {
             if (picture) {
@@ -201,6 +223,7 @@ const RegisterPet: React.FC = () => {
       if(isMedium) return enclosure
 
       if(isSmall) return enclosure
+
     })
     setEnclosuresBySize(enclosureSize)
   },[dogSize])
@@ -217,7 +240,14 @@ const RegisterPet: React.FC = () => {
   },[selectedEnclosure])
 
   useMemo(() => {
-    setHasCapacity(enclosure?.enclosure_size?.some((enclosure) => enclosure.size === dogSize && Number(enclosure.available) > 0))
+    if(dogSize === 'p') {
+      return setHasCapacity(Number(enclosure.enclosure_size_small_available) > 0 ? true : false )
+    }
+    if(dogSize === 'm') {
+      return setHasCapacity(Number(enclosure.enclosure_size_medium_available) > 0 ? true : false )
+    }
+
+    return setHasCapacity(Number(enclosure.enclosure_size_big_available) > 0 ? true : false )
   },[enclosure,dogSize])
 
 
@@ -237,7 +267,7 @@ const RegisterPet: React.FC = () => {
               sociable: false,
               castrated: false,
               items: '',
-              enclosure_id: '',
+              enclosure_id: 'null',
               vaccines: [],
               owner_id: '',
               note: '',
@@ -255,7 +285,9 @@ const RegisterPet: React.FC = () => {
               setFieldValue,
             }) => (
               <FormCustom onSubmit={handleSubmit}>
-                <Occupation enclosure={enclosure}/>
+                {values.enclosure_id !== 'null' ? (
+                  <Occupation enclosure={enclosure}/>
+                ): null}
                 <div id="align-inputs">
                   <InputFormik
                     name="name"
@@ -421,7 +453,7 @@ const RegisterPet: React.FC = () => {
                   </ContainerInputFile>
                 </div>
                 <div id="align-button-save">
-                  <Button layoutColor="button-green" disabled={!hasCapacity} type="submit">
+                  <Button layoutColor="button-green" disabled={!hasCapacity}  type="submit">
                     <FiSave size={24} />
                     <span>{hasCapacity ? 'Salvar': 'Canil não suporta'}</span>
                   </Button>

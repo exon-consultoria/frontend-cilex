@@ -1,39 +1,59 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Formik, FieldArray } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { FiSave } from 'react-icons/fi';
 
 import api from 'services/api';
 import {  IRegisterEnclosure } from 'types/pet/enclosure';
-
 import { Button, Header, InputFormik, ButtonBack, Select } from 'components';
-
 import { Container, Main, FormCustom } from './styles';
+import { EnclosureSize } from './enclosureSize';
+
 
 const RegisterEnclosure: React.FC = () => {
   const navigate = useNavigate();
-
 
   const formSchemaEnclosure = Yup.object().shape({
     code: Yup.string().required('Código Obrigatório'),
     description: Yup.string().required('Canil Obrigatório'),
     size: Yup.string().required('Capacidade do Canil'),
+    enclosure_size_big: Yup.string(),
+    enclosure_size_big_available: Yup.string(),
+    enclosure_size_medium: Yup.string(),
+    enclosure_size_medium_available: Yup.string(),
+    enclosure_size_small: Yup.string(),
+    enclosure_size_small_available: Yup.string()
   });
 
   const handleSubmitForm = useCallback(
     async (data: IRegisterEnclosure) => {
       try {
-        const { code, description,size ,enclosure_size} = data;
+        const { 
+          code,
+          description,
+          size,
+          enclosure_size_big,
+          enclosure_size_big_available,
+          enclosure_size_medium,
+          enclosure_size_medium_available,
+          enclosure_size_small,
+          enclosure_size_small_available
+        } = data;
 
-        JSON.stringify(enclosure_size)
+        console.log(data,'data')
         api
           .post('/enclosure', {
             code,
             description,
             size,
-            enclosure_size
+            enclosure_size_big,
+            enclosure_size_big_available,
+            enclosure_size_medium,
+            enclosure_size_medium_available,
+            enclosure_size_small,
+            enclosure_size_small_available
           })
           .then(() => {
             toast.success('Registrado com sucesso');
@@ -70,7 +90,12 @@ const RegisterEnclosure: React.FC = () => {
               code: '',
               description: '',
               size: '',
-              enclosure_size: [{capacity: '', size: '', available: ''}]
+              enclosure_size_big: '',
+              enclosure_size_big_available: '',
+              enclosure_size_medium: '',
+              enclosure_size_medium_available: '',
+              enclosure_size_small: '',
+              enclosure_size_small_available: ''
             }}
             validationSchema={formSchemaEnclosure}
             onSubmit={handleSubmitForm}
@@ -118,61 +143,9 @@ const RegisterEnclosure: React.FC = () => {
                     <option value="p">Pequeno</option>
                   </Select>
                 </div>
-                <div>
-                  <FieldArray name='enclosure_size'>
-                    {({push}) => (
-                      <>
-                        {values.enclosure_size.map((_,index) => (
-                          <div id="align-inputs" key={index}>
-                            <Select
-                              onChange={handleChange(`enclosure_size.${index}.size`)}
-                              name={`enclosure_size.${index}.size`}
-                            >
-                              <option value="">Alocação</option>
-                              {values.size === 'p' ? (
-                                <option value="p">Pequeno</option>
-                              ):null}
-                              {values.size === 'm' ? (
-                                <>
-                                  <option value="m">Médio</option>
-                                  <option value="p">Pequeno</option>
-                                </>
-                              ):null}
-                              {values.size === 'g' ? (
-                                <>
-                                  <option value="g">Grande</option>
-                                  <option value="m">Médio</option>
-                                  <option value="p">Pequeno</option>
-                                </>
-                              ):null}
-                            </Select>
-                            <InputFormik
-                              type="text"
-                              placeholder="Capacidade"
-                              name={`enclosure_size.${index}.capacity`}
-                            />
-                            <InputFormik
-                              type="text"
-                              placeholder="Disponível"
-                              name={`enclosure_size.${index}.available`}
-                            />
-                          </div>
-                        ))}
-                        <Button 
-                          style={{width: '300px'}}
-                          layoutColor='button-filled'
-                          type='button'
-                          onClick={() => {
-                            if(values.enclosure_size.length < 3) {
-                              push({capacity: '',size: '',available: ''})
-                            }
-                          }}>
-                          {values.enclosure_size.length < 3 ? 'Adicionar alocação' : 'Máximo permitido'}
-                        </Button>
-                      </>
-                    )}
-                  </FieldArray>
-                </div>
+                {values.size ? (
+                  <EnclosureSize values={values} handleChange={handleChange} errors={errors} touched={touched} />
+                ): null}
                 <div id="align-button-save" style={{marginTop: '20px'}}>
                   <Button layoutColor="button-green" type="submit">
                     <FiSave size={24} />
