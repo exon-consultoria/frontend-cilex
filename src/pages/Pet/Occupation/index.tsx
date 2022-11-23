@@ -4,6 +4,7 @@ import { IEnclosure } from 'types/pet/enclosure'
 
 interface OccupationType {
   enclosure: IEnclosure
+  size: string
 }
 
 const Dogs = ({size,available,index}) => {
@@ -21,7 +22,7 @@ const Dogs = ({size,available,index}) => {
 }
 
 
-export const Occupation:React.FC<OccupationType> = ({enclosure}) => {
+export const Occupation:React.FC<OccupationType> = ({enclosure,size}) => {
   const { 
     enclosure_size_big,
     enclosure_size_big_available,
@@ -61,24 +62,30 @@ export const Occupation:React.FC<OccupationType> = ({enclosure}) => {
 
   return (
     <S.Container>
-      <div style={{display: 'flex',gap: '20px', alignItems: 'center',height: '50px'}}>
-        <S.SizeText>
+      {size === 'g' && (
+        <div style={{display: 'flex',gap: '20px', alignItems: 'center',height: '50px'}}>
+          <S.SizeText>
         Grande:
-        </S.SizeText>
-        {big}
-      </div>
-      <div style={{display: 'flex',gap: '20px', alignItems: 'center',height: '50px'}}>
-        <S.SizeText>
+          </S.SizeText>
+          {big}
+        </div>
+      )}
+      {size === 'm' && (
+        <div style={{display: 'flex',gap: '20px', alignItems: 'center',height: '50px'}}>
+          <S.SizeText>
         Médio:
-        </S.SizeText>
-        {medium}
-      </div>
-      <div style={{display: 'flex',gap: '20px', alignItems: 'center',height: '50px',marginBottom: '20px'}}>
-        <S.SizeText>
+          </S.SizeText>
+          {medium}
+        </div>
+      )}
+      {size === 'p' && (
+        <div style={{display: 'flex',gap: '20px', alignItems: 'center',height: '50px',marginBottom: '20px'}}>
+          <S.SizeText>
         Pequeno:
-        </S.SizeText>
-        {small}
-      </div>
+          </S.SizeText>
+          {small}
+        </div>
+      )}
     </S.Container>
   )
 }

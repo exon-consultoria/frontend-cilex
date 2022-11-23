@@ -37,9 +37,6 @@ export const EditEntry: React.FC = () => {
     })
   }, [id]);
 
-  console.log(entry)
-
-
   const handleSubmitForm = useCallback(
     async (data: IRegisterEntry) => {
       try {

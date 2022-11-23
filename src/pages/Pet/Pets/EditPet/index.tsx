@@ -22,7 +22,7 @@ import { IVaccine } from 'types/pet/vaccine';
 import { IEnclosure } from 'types/pet/enclosure';
 
 import { Header, Button, InputFormik, ButtonBack, ModalDelete, Select, CustomSelect} from 'components';
-
+ 
 import {
     Container,
     Main,
@@ -59,7 +59,7 @@ interface RegisterPetForm {
   vaccines: string[];
   owner_id: string;
   note: string;
-  dog_size: string;
+  size: string;
 }
 
 const EditPet: React.FC = () => {
@@ -150,7 +150,7 @@ const EditPet: React.FC = () => {
           vaccines,
           owner_id,
           note,
-          dog_size
+          size
         } = data;
 
         api
@@ -166,7 +166,7 @@ const EditPet: React.FC = () => {
             items: items || undefined,
             vaccines: vaccines || undefined,
             note: note || undefined,
-            dog_size
+            size
           })
           .then(() => {
             if (picture) {
@@ -191,6 +191,7 @@ const EditPet: React.FC = () => {
     [history, id],
   );
 
+
   const formSchemaPetEdit = Yup.object().shape({
     name: Yup.string(),
     picture: Yup.mixed(),
@@ -204,7 +205,7 @@ const EditPet: React.FC = () => {
     vaccines: Yup.array(),
     owner_id: Yup.string(),
     note: Yup.string(),
-    dog_size: Yup.string(),
+    size: Yup.string(),
   });
 
 
@@ -286,6 +287,7 @@ const EditPet: React.FC = () => {
                   vaccines: pet.vaccines,
                   owner_id: pet.owner_id,
                   note: pet.note ? pet.note : '',
+                  size: pet.size
                 }}
                 validationSchema={formSchemaPetEdit}
                 onSubmit={handleSubmitForm}
@@ -351,12 +353,24 @@ const EditPet: React.FC = () => {
                             : ''
                         }
                       >
-                        <option value="">Localização</option>
-                        {enclosures.map(enclosure => (
+                        {enclosures.map(enclosure => (                      
                           <option key={enclosure.id} value={enclosure.id}>
                             {enclosure.description}
                           </option>
                         ))}
+                      </Select>
+                      <Select
+                        name="size"
+                        value={values.size}
+                        defaultValue={values.size}
+                        onChange={handleChange('size')}
+                        messageError={
+                          errors.size && touched.size ? errors.size : ''
+                        }
+                      >
+                        <option value="p" selected={values.size === 'p'}>Pequeno</option>
+                        <option value="m" selected={values.size === 'm'}>Médio</option>
+                        <option value="g" selected={values.size === 'g'}>Grande</option>
                       </Select>
                       <Field
                         className="select-custom"
@@ -458,19 +472,6 @@ const EditPet: React.FC = () => {
                         />
                         <img src={camera} alt="Select img" />
                       </ContainerInputFile>
-                      <Select
-                        name="dog_size"
-                        value={values.dog_size}
-                        onChange={handleChange('dog_size')}
-                        messageError={
-                          errors.dog_size && touched.dog_size ? errors.dog_size : ''
-                        }
-                      >
-                        <option value="">Porte</option>
-                        <option value="p">Pequeno</option>
-                        <option value="m">Médio</option>
-                        <option value="g">Grande</option>
-                      </Select>
                     </div>
                     <div id="align-button-save">
                       <Button layoutColor="button-green" type="submit">

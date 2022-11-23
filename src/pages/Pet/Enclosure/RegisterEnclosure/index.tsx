@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { FiSave } from 'react-icons/fi';
 
 import api from 'services/api';
-import {  IRegisterEnclosure } from 'types/pet/enclosure';
+import { IRegisterEnclosure } from 'types/pet/enclosure';
 import { Button, Header, InputFormik, ButtonBack, Select } from 'components';
 import { Container, Main, FormCustom } from './styles';
 import { EnclosureSize } from './enclosureSize';
@@ -42,7 +42,6 @@ const RegisterEnclosure: React.FC = () => {
           enclosure_size_small_available
         } = data;
 
-        console.log(data,'data')
         api
           .post('/enclosure', {
             code,

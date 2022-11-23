@@ -242,7 +242,6 @@ const EditProduct: React.FC = () => {
   //   }
   // }, []);
 
-  console.log(product);
 
   return (
     <>

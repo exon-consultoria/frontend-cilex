@@ -32,23 +32,42 @@ const ListEnclosure: React.FC = () => {
             <NewButton to="/pet/enclosure/all">Ver Todos</NewButton>
           </div>
           {enclosures.length > 0 ? (
-            <DefaultTable tbh={['Código', 'Canil', 'Alocação']}>
+            <DefaultTable tbh={['Código', 'Canil', 'Alocação','Disponíveis']}>
               <tbody>
-                {enclosures.map(enclosure => (
-                  <tr key={enclosure.id}>
-                    <td>{enclosure.code}</td>
-                    <td>{enclosure.description}</td>
-                    <td>{enclosure.size}</td>
-                    <td>
-                      <Link
-                        style={{ textDecoration: 'none' }}
-                        to={`/pet/enclosure/${enclosure.id}`}
-                      >
-                        <FiEye size={24} color={colors.main} />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
+                {enclosures.map(enclosure => {
+                  const {
+                    id,
+                    code,
+                    description,
+                    size,
+                    enclosure_size_big_available,
+                    enclosure_size_medium_available,
+                    enclosure_size_small_available 
+                  } = enclosure
+
+                  const available = size === 'g' 
+                    ? enclosure_size_big_available 
+                    : size === 'm' 
+                      ? enclosure_size_medium_available 
+                      : enclosure_size_small_available
+
+                  return (
+                    <tr key={id}>
+                      <td>{code}</td>
+                      <td>{description}</td>
+                      <td>{size}</td>
+                      <td>{available}</td>
+                      <td>
+                        <Link
+                          style={{ textDecoration: 'none' }}
+                          to={`/pet/enclosure/${enclosure.id}`}
+                        >
+                          <FiEye size={24} color={colors.main} />
+                        </Link>
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </DefaultTable>
           ) : (

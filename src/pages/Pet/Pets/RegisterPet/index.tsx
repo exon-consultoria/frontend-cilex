@@ -139,34 +139,33 @@ const RegisterPet: React.FC = () => {
           enclosure_size_small_available 
         } = enclosure
 
-        const updateEnclosure = dogSize === 'p' 
-          ?  {
-            enclosure_size_big_available,
-            enclosure_size_medium_available,
-            enclosure_size_small_available: (Number(enclosure.enclosure_size_small_available) - 1).toString()
-          } 
-          : dogSize === 'm' 
-            ? {
-              enclosure_size_big_available,
-              enclosure_size_medium_available: (Number(enclosure.enclosure_size_medium_available) - 1).toString(),
-              enclosure_size_small_available
-            } 
-            : dogSize === 'g' ? {
-              enclosure_size_big_available: (Number(enclosure.enclosure_size_big_available) - 1).toString(),
-              enclosure_size_medium_available,
-              enclosure_size_small_available
-            } : {
-              enclosure_size_big_available,
-              enclosure_size_medium_available,
-              enclosure_size_small_available
-            }
-
-        console.log(updateEnclosure,'teste')
-
-        api.put(`/enclosure/${enclosure.id}`, {
+        const newEnclosure = {
           code,
           description,
           size,
+          enclosure_size_big_available,
+          enclosure_size_medium_available,
+          enclosure_size_small_available
+        }
+
+        const updateEnclosure = dogSize === 'p' 
+          ?  
+          {
+            ...newEnclosure,
+            enclosure_size_small_available: (Number(enclosure.enclosure_size_small_available) - 1).toString()
+          } 
+          : dogSize === 'm' ?
+            {
+              ...newEnclosure,
+              enclosure_size_medium_available: (Number(enclosure.enclosure_size_medium_available) - 1).toString()
+            } : dogSize === 'g' ?
+              {
+                ...newEnclosure,
+                enclosure_size_big_available: (Number(enclosure.enclosure_size_big_available) - 1).toString()
+              } : 
+              {...newEnclosure}
+
+        api.put(`/enclosure/${enclosure.id}`, {
           ...updateEnclosure
         })
 
@@ -209,22 +208,7 @@ const RegisterPet: React.FC = () => {
   );
 
   useEffect(() => {
-    const enclosureSize = allEnclosures.filter((enclosure) => {
-      const { size } = enclosure
-
-      const isBig = size === 'g'
-      const isMedium = size === 'm' && dogSize !== 'g'
-      const isSmall = size ==='p' && dogSize === 'p'
-  
-      if(dogSize === 'null') return null
-      
-      if(isBig) return enclosure
-
-      if(isMedium) return enclosure
-
-      if(isSmall) return enclosure
-
-    })
+    const enclosureSize = allEnclosures.filter((enclosure) => enclosure.size === dogSize)
     setEnclosuresBySize(enclosureSize)
   },[dogSize])
 
@@ -286,7 +270,7 @@ const RegisterPet: React.FC = () => {
             }) => (
               <FormCustom onSubmit={handleSubmit}>
                 {values.enclosure_id !== 'null' ? (
-                  <Occupation enclosure={enclosure}/>
+                  <Occupation enclosure={enclosure} size={values.dog_size} />
                 ): null}
                 <div id="align-inputs">
                   <InputFormik
