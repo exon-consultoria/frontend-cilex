@@ -27,7 +27,7 @@ Follow these simple instructions to set up a local development environment.
 
   ```bash
   git clone https://github.com/exon-consultoria/frontend-cilex.git
-  cd frontend-cliex
+  cd frontend-cilex
   yarn
   ```
 
